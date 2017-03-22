@@ -1,0 +1,133 @@
+/* 全分类导航 style3 */
+.nav_style4_Class12
+{
+	background: #488abe;
+	border-bottom: 1px solid #3b79b2;
+	border-top: 1px solid #5199cb;
+}
+
+.nav_style3_SubClass2 .checked
+{
+	background-color: #488abe;
+}
+
+/*style1-导航最上边边框*/
+.nav_style1_content_li .nav_style1_content_li_noborder
+{
+	border-top: 1px solid #fff;
+}
+/*style2-导航最上边边框*/
+.nav_style1_content_li .nav_style2_content_li_noborder
+{
+	border-top: 1px solid #fff;
+}
+
+.nav_style1_content .nav_style1_content_hover1
+{
+	border-top: 1px solid #336699;
+	border-left: 1px solid #336699;
+	border-bottom: 1px solid #336699;
+	border-right: 1px solid #336699;
+	background: #336699;
+	z-index: 15;
+	color: #fff;
+}
+
+/*全部分类导航头部标题*/
+.plugin_containers .Nav_TitleStyleBox, .Nav_TitleStyleBox
+{
+	border: 2px solid #235b8a;
+	border-top: none;
+	background: #f4f4fc;
+}
+
+	.Nav_TitleStyleBox .patt_bg_plugin_title
+	{
+		background: url(../images/bg_NavTitle_10.png);
+	}
+
+.nav_style1_color1, .nav_style1_color2
+{
+	background: #f4f4fc;
+}
+
+.nav_style1_content_li
+{
+	border-top: 1px solid #FFFFFF;
+	border-bottom: 1px solid #e3e3ec;
+}
+
+	.nav_style1_content_li:last-child
+	{
+		border-bottom: 1px solid #f4f4fc;
+	}
+
+/*左边导航-鼠标经过li换边框颜色*/
+.nav_style1_contentBg
+{
+	width: 100%;
+	height: 100%;
+	background: #488abe;
+}
+
+.nav_style1_content .nav_style1_content_hover
+{
+	border-top: 1px solid #336699;
+	border-left: 1px solid #336699;
+	border-bottom: 1px solid #336699;
+	border-right: 1px solid #FFFFFF;
+	background: #fff;
+	z-index: 15;
+}
+
+.patt_border_leftnav
+{
+	border: 1px solid #336699;
+}
+
+/*插件-标题*/
+.patt_bg_plugin_title
+{
+	border-bottom-color: #336699;
+}
+
+.patt_border_plugin_title
+{
+	border-bottom-color: #336699;
+	border: 1px solid #e6e6e6;
+	border-top-color: #336699;
+}
+
+.patt_border_plugin_untitle
+{
+	border: 1px solid #e6e6e6;
+	border-top-color: #336699;
+}
+
+/*插件-多标签橱窗*/
+.patt_border_showcase_type1_inner
+{
+	border-left: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+	border-top: 1px solid #e6e6e6;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.patt_border_showcase_type1_title
+{
+	border-bottom: 1px solid #e6e6e6;
+	border-bottom-color: #336699;
+}
+
+	.patt_border_showcase_type1_title li
+	{
+		border-right: 1px solid #e6e6e6;
+		border-top-color: #336699;
+		border-top-width: 1px;
+		border-top-style: solid;
+	}
+
+		.patt_border_showcase_type1_title li:first-child
+		{
+			border-left: 1px solid #e6e6e6;
+		}

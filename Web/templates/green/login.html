@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员登录 - {config.webname}</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+<link media="screen" type="text/css" href="<%templateskin%>/css/style.css" rel="stylesheet">
+<script type="text/javascript" src="{config.webpath}scripts/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="{config.webpath}scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+<script type="text/javascript" src="<%templateskin%>/js/login_validate.js"></script>
+
+<link media="screen" type="text/css" rel="stylesheet" href="<%templateskin%>/images/jquery-ui.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/css/common.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/maincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/mainplugincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/deputycolor_0.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/bordercolor_2.css" >
+<script type="text/javascript" src="<%templateskin%>/images/jquery-ui-1.11.1.custom.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/images/common.min.js"></script>
+<script type="text/javascript"  src="<%templateskin%>/images/jquery.filedownload.min.js"></script>
+
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+	<div id="main">
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+<div  style="height:10px;"></div>
+
+<div class="boxwrap">
+  <div class="main_box">
+    <h1 class="main_tit">
+      会员登录<strong>Login</strong>
+    </h1>
+
+    <div class="login-box">
+    <div class="left-box">
+      <form id="loginform" name="loginform" url="{config.webpath}tools/submit_ajax.ashx?action=user_login">
+      <dl>
+        <dt>用户名：</dt>
+        <dd><input id="txtUserName" name="txtUserName" class="input txt" type="text" maxlength="50" />
+        <label>可输入手机号</label>
+        </dd>
+      </dl>
+      <dl>
+        <dt>密　码：</dt>
+        <dd><input id="txtPassword" name="txtPassword" class="input txt required" type="password" maxlength="100" /></dd>
+      </dl>
+      <dl>
+        <dt></dt>
+        <dd>
+          <input id="chkRemember" name="chkRemember" class="checkbox" type="checkbox" style="vertical-align:middle">
+          <label class="red" for="chkRemember">一周内自动登录</label>
+        </dd>
+      </dl>
+      <dl>
+        <dt></dt>
+        <dd>
+          <input id="btnSubmit" name="btnSubmit" type="submit" class="btn_login" value="登 录" />
+          <a href="<%linkurl("repassword","confirm")%>">忘记密码？</a>
+        </dd>
+      </dl>
+      <dl id="msgtips">
+        <dt></dt>
+        <dd></dd>
+      </dl>
+      <input id="turl" name="turl" type="hidden" value="{turl}" />
+      </form>
+
+    </div>
+    <div class="center-box"></div>
+    <div class="right-box">
+      <p class="note">我们诚挚地邀请您加入<br /></p>
+      <p>如果您还没有会员账户</p>
+      <p class="button">
+        <a href="<%linkurl("register")%>">立即注册</a>
+      </p>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div class="clear"></div>
+</div>
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>

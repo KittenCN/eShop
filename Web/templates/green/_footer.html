@@ -1,0 +1,36 @@
+﻿<div id="footer">
+		<div id="store_footer_box">
+	<div class="footer-box">
+			<ul class="footer">
+
+        <%set DataTable category_listfoot1=get_category_child_list("content", 0)%>
+        <%loop cdrfoot1 category_listfoot1%>
+				<li class="footer_firstlist">
+					<dl class="footer_list_title">
+						<dt>{cdrfoot1[title]}</dt>
+            <%set DataTable category_listfoot2=get_category_child_list("content", {strtoint({cdrfoot1[id]})})%>
+            <%loop cdrfoot2 category_listfoot2%>
+						<dd><a target="_blank" href="<%linkurl("content",{cdrfoot2[call_index]})%>" rel="nofollow">{cdrfoot2[title]}</a></dd>
+            <%/loop%>
+					</dl>
+				</li>
+       <%/loop%>
+
+			</ul>
+	</div>
+	<div class="footer_copyright" id="store_footer">
+		<div id="footer_content">
+        <div style="text-align:center;">
+        <div class="links" style="margin:0px;padding:0px;color:#666666;font-family:Arial, Verdana, 宋体;text-align:center;white-space:normal;background-color:#FFFFFF;">
+        <br />
+        <p align="center" style="orphans:2;white-space:normal;widows:2;background-color:#FFFFFF;margin-top:0px;margin-bottom:0px;color:#666666;font-family:&#39;Microsoft YaHei&#39;, SimSun, Arial;padding:0px;"><span style="outline:none;text-decoration:none;color:#666666;margin:0px;padding:0px;font-family:&#39;Microsoft YaHei&#39;;line-height:2;font-size:12px;">ICP备案号： Copyright © 2014&nbsp;</span><span style="margin:0px;padding:0px;font-family:&#39;Microsoft YaHei&#39;;line-height:2;"><span style="color:#666666;font-size:12px;">All Rights Reserved </span>
+ <span style="color:#666666;font-size:12px;">&nbsp;</span></span><span style="margin:0px;padding:0px;font-family:&#39;Microsoft YaHei&#39;;line-height:2;color:#666666;font-size:12px;">版权所有,违者必究</span> </p><p align="center" style="orphans:2;white-space:normal;widows:2;background-color:#FFFFFF;margin-top:0px;margin-bottom:0px;color:#666666;font-family:&#39;Microsoft YaHei&#39;, SimSun, Arial;padding:0px;"><img src="<%templateskin%>/images/wKgJNFIjQWqAJKM9AAAIu06yUwg699.png" style="border-style:none;vertical-align:middle;margin:0px;padding:0px;"><span style="color:#666666;font-size:12px;">&nbsp;</span><img title="网站备案" src="<%templateskin%>/images/wKgJNFIhXSiAHPFHAAAGom5QmAk433.png" height="50" width="110" style="border-style:none;vertical-align:middle;margin:0px;padding:0px;"><span style="color:#666666;font-size:12px;">&nbsp;&nbsp;</span><img src="<%templateskin%>/images/wKgJNFIy2qyAEa3yAAAMqg2PFik097.jpg" style="border-style:none;vertical-align:middle;margin:0px;padding:0px;"><span style="color:#666666;font-size:12px;">&nbsp;</span><img title="网银" src="<%templateskin%>/images/wKgJNFIhXS-AVNvhAAAJ3K_rPvM818.png" height="50" width="140" style="border-style:none;vertical-align:middle;margin:0px;padding:0px;"><span style="color:#666666;font-size:12px;">&nbsp;&nbsp;</span><span style="color:#666666;font-size:12px;">&nbsp;</span></p><p align="center" style="orphans:2;white-space:normal;widows:2;background-color:#FFFFFF;margin-top:0px;margin-bottom:0px;color:#666666;font-family:&#39;Microsoft YaHei&#39;, SimSun, Arial;padding:0px;"><span style="margin:0px;padding:0px;font-family:&#39;Microsoft YaHei&#39;;line-height:2;color:#666666;font-size:12px;">技术支持：&nbsp;</span><span style="outline:none;margin:0px;padding:0px;font-family:&#39;Microsoft YaHei&#39;;line-height:2;"><span style="outline:none;text-decoration:none;color:#666666;margin:0px;padding:0px;font-size:12px;"><a href="http://www.olshine.com/" target="_blank" style="outline:none;text-decoration:none;color:#2A586F;margin:0px;padding:0px;"><span style="color:#666666;">奥祥科技</span></a></span></span> </p></div></div></div>
+	</div>
+</div>
+</div>  
+
+<script src="<%templateskin%>/images/header.js" type="text/javascript"></script>
+<script type="text/javascript">
+    show_store_nav();
+</script>
+

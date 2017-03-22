@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>查看订单详情 - {config.webname}</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+<link rel="stylesheet" href="{config.webpath}css/pagination.css" />
+<link media="screen" type="text/css" href="<%templateskin%>/css/style.css" rel="stylesheet" />
+<script type="text/javascript" src="{config.webpath}scripts/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="{config.webpath}scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+<script type="text/javascript" src="<%templateskin%>/js/base.js"></script>
+<link media="screen" type="text/css" rel="stylesheet" href="<%templateskin%>/images/jquery-ui.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/css/common.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/maincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/mainplugincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/deputycolor_0.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/bordercolor_2.css" >
+<script type="text/javascript" src="<%templateskin%>/images/jquery-ui-1.11.1.custom.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/images/common.min.js"></script>
+<script type="text/javascript"  src="<%templateskin%>/images/jquery.filedownload.min.js"></script>
+
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+	<div id="main">
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+<div  style="height:10px;"></div>
+
+<div class="boxwrap">
+  <div class="left180">
+   <!--Sidebar-->
+   <%template src="_ucenter_nav.html"%>
+    <!--/Sidebar-->
+  </div>
+  
+  <div class="right757">
+    <h1 class="main_tit">
+      <span><a href="<%linkurl("usercenter","index")%>">管理首页</a></span>
+      我的订单
+      <strong>Order</strong>
+    </h1>
+    
+    <div class="order_box">
+      <!--订单状态.开始-->
+      <div style="text-align:center;">
+      <%if(model.status<4)%>
+        <div class="order_flow" style="width:460px;">
+          <div class="order_flow_left">
+            <a class="order_flow_input">生成</a>
+            <span><p class="name">订单已生成</p><p>{model.add_time}</p></span>
+          </div>
+          <%if(model.payment_status>0)%>
+            <%if(model.payment_status==2)%>
+            <div class="order_flow_arrive">
+              <a class="order_flow_input">支付</a>
+              <span><p class="name">已支付</p><p>{model.payment_time}</p></span>
+            </div>
+            <%else%>
+            <div class="order_flow_wait">
+              <a class="order_flow_input">支付</a>
+              <span><p class="name">待支付</p></span>
+            </div>
+            <%/if%>
+          
+          <%else%> 
+            <%if(model.status<2)%>
+            <div class="order_flow_wait">
+              <a class="order_flow_input">确认</a>
+              <span><p class="name">待确认</p></span>
+            </div>
+            <%else%>
+            <div class="order_flow_arrive">
+              <a class="order_flow_input">确认</a>
+              <span><p class="name">订单已确认</p><p>{model.confirm_time}</p></span>
+            </div>
+            <%/if%>
+          <%/if%>
+                
+          <%if(model.express_status==1)%>
+          <div class="order_flow_wait">
+            <a class="order_flow_input">送货</a>
+            <span><p class="name">待送货</p></span>
+          </div>
+          <%else if(model.express_status==2)%>
+          <div class="order_flow_arrive">
+            <a class="order_flow_input">送货</a>
+            <span><p class="name">已送货</p><p>{model.express_time}</p></span>
+          </div>
+          <%/if%>
+                
+          <%if(model.status>2)%>
+          <div class="order_flow_right_arrive">
+            <a class="order_flow_input">完成</a>
+            <span><p class="name">订单已完成</p><p>{model.complete_time}</p></span>
+          </div>
+          <%else%>
+          <div class="order_flow_right_wait">
+            <a class="order_flow_input">完成</a>
+            <span><p class="name">未完成</p></span>
+          </div>
+          <%/if%>
+          <div class="clear"></div>
+        </div>
+        <%else if(model.status==4)%>
+        <div style="text-align:center;line-height:50px; font-size:20px; color:Red;">该订单已取消</div>
+        <%else if(model.status==5)%>
+        <div style="text-align:center;line-height:50px; font-size:20px; color:Red;">该订单已作废</div>
+        <%/if%>
+              
+      <div class="line10"></div>
+      <div class="accept_box">
+        <dl>
+          <dt>订单号：</dt>
+          <dd>{model.order_no}</dd>
+        </dl>
+        <dl>
+          <dt>订单状态：</dt>
+          <dd>
+            <%=get_order_status(model.id)%>
+            <%if(get_order_payment_status(model.id))%>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-success" href="<%linkurl("payment","confirm",model.order_no)%>">去付款</a>
+            <%/if%>
+          </dd>
+        </dl>
+        <dl>
+          <dt>顾客姓名：</dt>
+          <dd>{model.accept_name}</dd>
+        </dl>
+        <dl>
+          <dt>收货地址：</dt>
+          <dd>{model.address}</dd>
+        </dl>
+        <dl>
+          <dt>手机号码：</dt>
+          <dd>{model.mobile}</dd>
+        </dl>
+        <dl>
+          <dt>固定电话：</dt>
+          <dd>{model.telphone}</dd>
+        </dl>
+        <dl>
+          <dt>备注留言：</dt>
+          <dd>{model.message}</dd>
+        </dl>
+      </div>
+              
+      <div class="line10"></div>
+      <table width="100%" border="0" cellspacing="0" cellpadding="5" class="ftable">
+        <tr>
+          <th width="64"></th>
+          <th align="left">商品名称</th>
+          <th width="80">销售价</td>
+          <th width="80">优惠价</th>
+          <th width="60">积分</th>
+          <th width="50">数量</th>
+          <th width="100">金额合计</th>
+          <th width="80">积分合计</th>
+        </tr>
+        <%if(model.order_goods!=null)%>
+        <%foreach(Model.order_goods modelt in model.order_goods)%>
+        <tr>
+          <td><a target="_blank" href="<%linkurl("goods_show",{modelt.goods_id})%>"><img src="<%=get_article_img_url(modelt.goods_id)%>" class="img" /></a></td>
+          <td align="left"><a target="_blank" href="<%linkurl("goods_show",{modelt.goods_id})%>">{modelt.goods_title}</a></td>
+          <td align="center">￥{modelt.goods_price}</td>
+          <td align="center">￥{modelt.real_price}</td>
+          <td align="center">
+            <%if(modelt.point>0)%>
+            +
+            <%/if%>
+            {modelt.point}
+          </td>
+          <td align="center">{modelt.quantity}</td>
+          <td align="center"><font color="#FF0000" size="2">￥<%=(modelt.real_price*modelt.quantity)%></font></td>
+          <td align="center"><font color="#FF0000" size="2"><%=(modelt.point*modelt.quantity)%></font></td>
+        </tr>
+        <%/foreach%>
+        <%else%>
+        <tr><td colspan="8" align="center">暂无记录</td></tr>
+        <%/if%>
+      </table>
+      <div class="line10"></div>
+      <div style="text-align:right;">
+        商品金额：<span class="red">￥{model.real_amount}</span>&nbsp; &nbsp;+ &nbsp; 运费：<span class="red">￥{model.express_fee}</span>&nbsp; &nbsp;+ &nbsp; 支付手续费：<span class="red">￥{model.payment_fee}</span><br />
+        <b>应付总金额：<span class="red">￥{model.order_amount}</span></b>
+      </div>
+      <div class="line10"></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="clear"></div>
+</div>
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>

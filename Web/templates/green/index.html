@@ -1,0 +1,723 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> {config.webname}</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+<link media="screen" type="text/css" rel="stylesheet" href="<%templateskin%>/images/jquery-ui.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/css/common.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/maincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/mainplugincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/deputycolor_0.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/bordercolor_2.css" >
+
+<script type="text/javascript" src="<%templateskin%>/images/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/images/jquery-ui-1.11.1.custom.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/images/common.min.js"></script>
+<script type="text/javascript"  src="<%templateskin%>/images/jquery.filedownload.min.js"></script>
+ <script type="text/javascript"  src="<%templateskin%>/js/gundong.js"></script>
+
+<script type="text/javascript">
+    function getContentPath(path) {
+        var ContentPath = '/';
+        if (ContentPath.substr(ContentPath.length - 1, 1) != '/') {
+            ContentPath += '/';
+        }
+        return ContentPath + path;
+    }
+    function getScriptPath(path) {
+        var ScriptPath = '/';
+        if (ScriptPath.substr(ScriptPath.length - 1, 1) != '/') {
+            ScriptPath += '/';
+        }
+        return ScriptPath + "Scripts/" + path;
+    }
+    function getActionPath(action, controller) {
+        var ActionPath = '/';
+        if (ActionPath.substr(ActionPath.length - 1, 1) != '/') {
+            ActionPath += '/';
+        }
+        return ActionPath + controller + "/" + action;
+    }
+    function getFullActionPath(action, controller) {
+        var ActionPath = "http://" + window.location.host + '/';
+        if (ActionPath.substr(ActionPath.length - 1, 1) != '/') {
+            ActionPath += '/';
+        }
+        return ActionPath + controller + "/" + action;
+    }
+
+    function getFullPath(path) {
+        var FullPath = '/';
+        FullPath = "http://" + window.location.host + FullPath;
+        if (FullPath.substr(FullPath.length - 1, 1) != '/') {
+            FullPath += '/';
+        }
+        return FullPath + path;
+    }
+
+    $.cookie.json = true;
+</script>
+
+<script src="<%templateskin%>/images/share.js"></script>
+<body style="background-color: rgb(255, 255, 255);">
+	<div id="main">
+	
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+
+		<div class="contentmainbox">
+			<div id="display_containers" style="height:2400px;">
+		
+        <div class="plugin_containers" style="left: 0px; top: 0px; width: 196px; height: 350px; z-index: 10;" layout_id="11402904" plugin_type="5" plugin_data_show_title="1" plugin_data_style="1" plugin_data_type="0" x="0" y="0" cx="1" cy="7">
+		<div class="plugin_body" style="width:196px;height:350px;">
+					<div class="plugin_untitle_border patt_border_plugin_untitle" style="width: 174px; height: 328px;">
+						<div class="plugin_inner_content" style="width: 174px; height: 328px;">
+					<div class="nav_style1_main_content">
+						<ul class="nav_style1_content nav_style1_color1" style="cursor: default;">
+
+          <%set DataTable category_list27=get_category_child_list("goods", 0)%>
+        <%loop cdr27 category_list27%>
+		<li class="class1 nav_style1_content_li" class1_id="6461"><p class="nav_p"><a target="_blank" href="<%linkurl("goods_list",{cdr27[id]})%>">{cdr27[title]}</a></p><div class="nav_style1_button_arrow icon_nav_arrow"></div></li>
+			<%/loop%>
+
+						</ul>
+                               <%set DataTable category_list25=get_category_child_list("goods", 0)%>
+        <%loop cdr25 category_list25%>
+							<div class="nav_style1_sub patt_border_leftnav" style="display: none;">
+									<dl class="nav_style1_sub_class2">
+										<dt class="class2" class2_id="7524"><a target="_blank" href="<%linkurl("goods_list",{cdr25[id]})%>">{cdr25[title]}</a></dt>
+										<dd>
+											  <%set DataTable category_list26=get_category_child_list("goods", {strtoint({cdr25[id]})})%>
+            <%loop cdr26 category_list26%>
+												<em><a class="class3" class3_id="10020" target="_blank" href="<%linkurl("goods_list",{cdr26[id]})%>">{cdr26[title]}</a></em>
+			 <%/loop%>
+										</dd>
+									</dl>
+									
+							</div>
+                 <%/loop%>
+							
+					</div>
+</div>
+					</div>
+		</div>
+		</div>
+		<div class="plugin_containers" style="left:196px;top:0px;width:710px;height:350px;" layout_id="11402905" plugin_type="0" plugin_data_show_title="0" plugin_data_style="1" plugin_data_type="0" x="1" y="0" cx="1" cy="7">
+		<div class="plugin_body" style="width:710px;height:350px;">
+					<div class="plugin_untitle_noborder" style="width: 700px; height: 340px;">
+						<div class="plugin_inner_content" style="width: 700px; height: 340px;">
+		<div class="plugin_advertising_content" direction="1" interval="2000">
+				<div class="slideshow" style="width: 7000px; height: 340px;">
+					<div class="caroufredsel_wrapper" style="display: block; text-align: start; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: auto; z-index: 0; width: 700px; height: 340px; margin: 0px; overflow: hidden;"><ul class="slides" style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 6300px; height: 340px; z-index: 0;">											
+	     <%set DataTable topad1=get_article_list("photo", 0, 8, "status=0 and category_id=93","sort_id asc,add_time desc")%>
+          <%foreach(DataRow dr in topad1.Rows)%>
+                	<li style="width: 700px; height: 340px;"><a href="{dr[link_url]}" target="_blank"><img class="lazy adv_image" index="1" src="{dr[img_url]}" data-original="{dr[img_url]}" style="width: 700px; height: 340px; display: inline;"></a></li>
+          <%/foreach%>      
+                    
+                    </ul></div>
+				</div>
+				<div class="prev_arrow_box plugin_touch_cancel" style="display: none;"><div class="prev_arrow" style="top: 149px;"></div></div>
+				<div class="next_arrow_box plugin_touch_cancel" style="display: none;"><div class="next_arrow" style="top: 149px;"></div></div>
+		</div>
+</div>
+					</div>
+		</div>
+		</div>
+		<div class="plugin_containers" style="left:0px;top:350px;width:906px;height:300px;" layout_id="11402906" plugin_type="3" plugin_data_show_title="3" plugin_data_style="0" plugin_data_type="0" x="0" y="7" cx="2" cy="6">
+		<div class="plugin_body" style="width:906px;height:300px;">
+				<div class="showcase_TitleBox">
+					<ul class="showcase_type1_title patt_border_showcase_type1_title">
+						<li class="label_list bg_a patt_bg_plugin_title checked" label_id="0" processed="true">
+							<a href="javascript:void(0)"><div>今日特价</div></a>
+						</li>
+						<li class="label_list bg_a patt_bg_plugin_title" label_id="1">
+							<a href="javascript:void(0)"><div>新品上架</div></a>
+						</li>
+						<li class="label_list bg_a patt_bg_plugin_title" label_id="2">
+							<a href="javascript:void(0)"><div>猜您喜欢</div></a>
+						</li>
+					</ul>
+				</div>
+			<div class="plugin_inner_border showcase_type1-inner-border patt_border_showcase_type1_inner">
+				<div class="showcase_type1-inner">
+					<div class="plugin_inner_content" style="width: 884px; height: 240px;">
+		<div class="showcase_main_content" goods_style="0">
+<ul class="showcase_type1_goods" lazy="1" style="display: block;">
+	  <%set DataTable topgoods=get_article_list("goods", 0, 6, "is_top=1","add_time desc")%>
+          <%foreach(DataRow dr in topgoods.Rows)%>
+
+    <li class="goods_list" label_id="0" goods_id="8676" RuleId="6275" RuleType="1" RuleStartTime="\/Date(1379779200000)\/" RuleEndTime="\/Date(1444233600000)\/" Price="188800" DiscountPrice="10000" style="padding: 12px 5px 8px;">
+				<div class="showcase_goods_style0">
+					<div class="showcase_goods_style0_img">
+						<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy" src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="width: 166px; height: 166px; margin-left: 0px; margin-top: 0px; display: inline;"></a>
+						<div id="sales_icon"><div class="sales_reduce"></div></div>
+					</div>
+					<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<p class="showcase_goods_style0_rmb">
+						<strong>现价：¥ <em id="sales_price">{dr[sell_price]}</em></strong>
+					</p>
+				</div>
+	</li>
+       <%/foreach%>
+				</ul>
+
+				<ul class="showcase_type1_goods" style="display: none;">
+		  <%set DataTable redgoods=get_article_list("goods", 0, 6, "is_red=1","add_time desc")%>
+          <%foreach(DataRow dr in redgoods.Rows)%>
+    <li class="goods_list" label_id="1" goods_id="8670" RuleId="" RuleType="" RuleStartTime=null RuleEndTime=null Price="249900" DiscountPrice=""style="padding: 12px 5px 8px;">
+				<div class="showcase_goods_style0">
+					<div class="showcase_goods_style0_img">
+						<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy" src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="width: 166px; height: 166px; margin-left: 0px; margin-top: 0px; display: inline;"></a>
+						<div id="Div1"><div class="sales_reduce"></div></div>
+					</div>
+					<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<p class="showcase_goods_style0_rmb">
+						<strong>现价：¥ <em id="Em1">{dr[sell_price]}</em></strong>
+					</p>
+				</div>
+	</li>
+       <%/foreach%>
+				</ul>
+				<ul class="showcase_type1_goods" style="display: none;">
+	  <%set DataTable hotgoods=get_article_list("goods", 0, 6, "is_hot=1","add_time desc")%>
+          <%foreach(DataRow dr in hotgoods.Rows)%>
+   <li class="goods_list" label_id="2" goods_id="8671" RuleId="" RuleType="" RuleStartTime=null RuleEndTime=null  DiscountPrice=""style="padding: 12px 5px 8px;">
+				<div class="showcase_goods_style0">
+					<div class="showcase_goods_style0_img">
+						<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy" src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="width: 166px; height: 166px; margin-left: 0px; margin-top: 0px; display: inline;"></a>
+						<div id="Div2"><div class="sales_reduce"></div></div>
+					</div>
+					<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<p class="showcase_goods_style0_rmb">
+						<strong>现价：¥ <em id="Em2">{dr[sell_price]}</em></strong>
+					</p>
+				</div>
+	</li>
+       <%/foreach%>
+				</ul>
+				
+		</div>
+</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		<div class="plugin_containers" style="left:0px;top:650px;width:196px;height:550px;" layout_id="11402910" plugin_type="4" plugin_data_show_title="3" plugin_data_style="2" plugin_data_type="0" x="0" y="23" cx="1" cy="11">
+		<div class="plugin_body" style="width:196px;height:550px;">
+			<div class="plugin_title_border patt_border_plugin_title" style="width: 184px; height: 538px;">
+				<div class="plugin_title_pic bg_a patt_bg_plugin_title">
+					<div class="plugin_title patt_font_plugin_title">精选推荐</div>
+				</div>
+				<div class="plugin_inner_border">
+					<div class="plugin_inner_content" style="width: 174px; height: 490px;">
+		<div class="showcase_main_content" goods_style="0" roll="False" direction="2" interval="2000">
+			<ul class="showcase_type2_goods">	
+            
+                  <%set DataTable goodsf11=get_article_list("goods", 2, 3, "is_top=1","add_time desc")%>
+          <%foreach(DataRow dr in goodsf11.Rows)%>
+
+    	<li class="goods_list" label_id="0" goods_id="8683" ruleid="6275" ruletype="1" rulestarttime="\/Date(1379779200000)\/" ruleendtime="\/Date(1444233600000)\/" price="232200" discountprice="10000" style="width: 174px;">
+			<div class="showcase_goods_style2">
+				<div class="showcase_goods_style2_img plugin_touch_cancel">
+					<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy"src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="display: inline;"></a>
+				</div>
+				<div class="a_text" style="width: 79px;">
+					<div class="a_text_dt"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<div class="a_text_dd"><strong>¥ <em id="Em10">{dr[sell_price]}</em></strong></div>
+				</div>
+			</div>
+	</li>
+      <%/foreach%>
+                        <%set DataTable goodsf21=get_article_list("goods", 14, 2, "is_top=1","add_time desc")%>
+          <%foreach(DataRow dr in goodsf21.Rows)%>
+
+    	<li class="goods_list" label_id="0" goods_id="8683" ruleid="6275" ruletype="1" rulestarttime="\/Date(1379779200000)\/" ruleendtime="\/Date(1444233600000)\/" price="232200" discountprice="10000" style="width: 174px;">
+			<div class="showcase_goods_style2">
+				<div class="showcase_goods_style2_img plugin_touch_cancel">
+					<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy"src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="display: inline;"></a>
+				</div>
+				<div class="a_text" style="width: 79px;">
+					<div class="a_text_dt"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<div class="a_text_dd"><strong>¥ <em id="Em7">{dr[sell_price]}</em></strong></div>
+				</div>
+			</div>
+	</li>
+      <%/foreach%>
+	
+</ul>
+		</div>
+</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="plugin_containers" style="left:196px;top:650px;width:710px;height:550px;" layout_id="11402911" plugin_type="2" plugin_data_show_title="3" plugin_data_style="0" plugin_data_type="0" x="1" y="23" cx="1" cy="11">
+		<div class="plugin_body" style="width:710px;height:550px;">
+			<div class="plugin_title_border patt_border_plugin_title" style="width: 698px; height: 538px;">
+				<div class="plugin_title_pic bg_a patt_bg_plugin_title">
+					<div class="plugin_title patt_font_plugin_title">食品饮料</div>
+						<ul class="plugin_title_searchkey">
+						</ul>
+				</div>
+				<div class="plugin_inner_border">
+					<div class="plugin_inner_content" style="width: 688px; height: 490px;">
+		<div class="showcase_main_content" goods_style="0" roll="False" direction="2" interval="2000">
+			<ul class="showcase_type0_goods">
+
+      <%set DataTable goodsf1=get_article_list("goods", 2, 4, "1=1","add_time desc")%>
+          <%foreach(DataRow dr in goodsf1.Rows)%>
+        <li class="goods_list" label_id="0" goods_id="{dr[id]}" RuleId="{dr[id]}" RuleType="" RuleStartTime=null RuleEndTime=null Price="{dr[sell_price]}" DiscountPrice="" style="padding: 12px 3px 8px;">
+				<div class="showcase_goods_style0">
+					<div class="showcase_goods_style0_img">
+						<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy" src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="width: 166px; height: 166px; margin-left: 0px; margin-top: 0px; display: inline;"></a>
+						<div id="sales_icon"><div class="sales_reduce"></div></div>
+					</div>
+					<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<p class="showcase_goods_style0_rmb">
+						<strong>现价：¥ <em id="Em21">{dr[sell_price]}</em></strong>
+					</p>
+				</div>
+	</li>
+
+      <%/foreach%>
+
+    <%set DataTable goodsf2=get_article_list("goods", 14, 4, "1=1","add_time desc")%>
+    <%foreach(DataRow dr in goodsf2.Rows)%>
+        <li class="goods_list" label_id="0" goods_id="{dr[id]}" RuleId="{dr[id]}" RuleType="" RuleStartTime=null RuleEndTime=null Price="{dr[sell_price]}" DiscountPrice="" style="padding: 12px 3px 8px;">
+				<div class="showcase_goods_style0">
+					<div class="showcase_goods_style0_img">
+						<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy" src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="width: 166px; height: 166px; margin-left: 0px; margin-top: 0px; display: inline;"></a>
+						<div id="Div11"><div class="sales_reduce"></div></div>
+					</div>
+					<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<p class="showcase_goods_style0_rmb">
+						<strong>现价：¥ <em id="Em22">{dr[sell_price]}</em></strong>
+					</p>
+				</div>
+	</li>
+      <%/foreach%>
+
+</ul>
+		</div>
+</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="plugin_containers" style="left:906px;top:350px;width:294px;height:300px;" layout_id="11402912" plugin_type="1" plugin_data_show_title="3" plugin_data_style="1" plugin_data_type="8" x="2" y="7" cx="1" cy="6">
+		<div class="plugin_body" style="width:294px;height:300px;">
+			<div class="plugin_title_border patt_border_plugin_title" style="width: 282px; height: 288px;">
+				<div class="plugin_title_pic bg_a patt_bg_plugin_title">
+					<div class="plugin_title patt_font_plugin_title">热卖品牌</div>
+				</div>
+				<div class="plugin_inner_border">
+					<div class="plugin_inner_content" style="width: 272px; height: 240px;">
+						<div class="image_type8_gap">
+							<ul>
+          <%set DataTable category_listpphot=get_category_child_listpp(8,"pingpai", 0, 0)%>
+        <%loop cdrhot category_listpphot%>
+        	<li class="li1" style="width:131px;height:53px;">
+		    <a target="_blank" href="goods_list.aspx?category_id=0&vote_id={cdrhot[id]}"><img class="lazy" title="{cdrhot[title]}" src="{cdrhot[img_url]}" style="display: inline;"></a>
+			</li>
+			<%/loop%>
+
+								
+							</ul>
+						</div>
+</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<div class="plugin_containers" style="left:906px;top:650px;width:294px;height:550px;" layout_id="11402913" plugin_type="2" plugin_data_show_title="3" plugin_data_style="0" plugin_data_type="0" x="2" y="13" cx="1" cy="21">
+		<div class="plugin_body" style="width:294px;height:550px;">
+			<div class="plugin_title_border patt_border_plugin_title" style="width: 282px; height: 538px;">
+				<div class="plugin_title_pic bg_a patt_bg_plugin_title">
+					<div class="plugin_title patt_font_plugin_title">邻居们怎么说</div>
+						<ul class="plugin_title_searchkey">
+						</ul>
+				</div>
+				<div class="plugin_inner_border">
+					<div class="plugin_inner_content" style="width: 272px; height: 490px;">
+					<div class="plugin_inner_border">
+					<div class="plugin_inner_content" style="width: 272px; height: 490px;">
+		<div class="plugin_news_main_content" id="marqueediv2" style="width:272px; height:490px; overflow:hidden;">
+				<div class="text_news_style0_content">
+					<ul class="text_news_list">
+                      <%set DataTable indexpl=get_comment_list(0, 28, "is_lock=0")%>
+                      <%foreach(DataRow dr in indexpl.Rows)%>
+						<a target="_blank" class="news_title" title="{dr[content]}" href="<%linkurl("goods_show",{dr[article_id]})%>"><%cutstring({dr[content]},88)%>【<%datetostr({dr[add_time]},MM-dd)%>】</a><br />
+						 <%/foreach%>
+					</ul>
+				</div>
+		</div>
+<script type="text/javascript">
+            new Marquee("marqueediv2", 0, 1, 272, 488, 70, 0, 280)
+</script>
+</div>
+				</div>
+</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+        <div class="plugin_containers" style="left:906px;top:0px;width:294px;height:150px;" layout_id="11402914" plugin_type="1" plugin_data_show_title="0" plugin_data_style="1" plugin_data_type="1" x="2" y="0" cx="1" cy="3">
+		<div class="plugin_body" style="width:294px;height:150px;">
+					<div class="plugin_untitle_noborder" style="width: 284px; height: 140px;">
+						<div class="plugin_inner_content" style="width: 284px; height: 140px;">
+ <%set DataTable topad2=get_article_list("photo", 0, 1, "status=0 and category_id=94","sort_id asc,add_time desc")%>
+          <%foreach(DataRow dr in topad2.Rows)%>
+<a href="{dr[link_url]}" target="_blank"><img class="lazy image_type1"  src="{dr[img_url]}" data-original="{dr[img_url]}" style="width: 284px; height: 140px; display: inline;"></a>
+          <%/foreach%>   
+</div>
+					</div>
+		</div>
+		</div>
+		<div class="plugin_containers" style="left:906px;top:150px;width:294px;height:200px;" layout_id="11402915" plugin_type="8" plugin_data_show_title="3" plugin_data_style="0" plugin_data_type="0" x="2" y="3" cx="1" cy="4">
+		<div class="plugin_body" style="width:294px;height:200px;">
+			<div class="plugin_title_border patt_border_plugin_title" style="width: 282px; height: 188px;">
+				<div class="plugin_title_pic bg_a patt_bg_plugin_title">
+					<div class="plugin_title patt_font_plugin_title">店铺公告</div>
+				</div>
+				<div class="plugin_inner_border">
+					<div class="plugin_inner_content" style="width: 272px; height: 140px;">
+		<div class="plugin_news_main_content" roll="False" direction="2" interval="2000" style="height: 125px;">
+				<div class="text_news_style0_content">
+					<ul class="text_news_list">
+                      <%set DataTable indexgg=get_article_list("news", 1, 5, "status=0", "add_time desc,id desc")%>
+                      <%foreach(DataRow dr in indexgg.Rows)%>
+						<li><a target="_blank" class="news_title" title="{dr[title]}" href="<%linkurl("news_show",{dr[id]})%>"><%cutstring({dr[title]},38)%></a><div class="icon_h"></div></li>
+						 <%/foreach%>
+					</ul>
+				</div>
+		</div>
+</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<div class="plugin_containers" style="left:0px;top:1200px;width:1200px;height:100px;" layout_id="11402916" plugin_type="1" plugin_data_show_title="1" plugin_data_style="1" plugin_data_type="1" x="0" y="34" cx="3" cy="2">
+		<div class="plugin_body" style="width:1200px;height:100px;">
+					<div class="plugin_untitle_border patt_border_plugin_untitle" style="width: 1178px; height: 78px;">
+						<div class="plugin_inner_content" style="width: 1178px; height: 78px;">
+
+           <%set DataTable topad3=get_article_list("photo", 0, 1, "status=0 and category_id=95","sort_id asc,add_time desc")%>
+          <%foreach(DataRow dr in topad3.Rows)%>
+                <a href="{dr[link_url]}" target="_blank"><img class="lazy adv_image" index="1" src="{dr[img_url]}" data-original="{dr[img_url]}" style="width: 1178px; height: 78px; display: inline;"></a>
+          <%/foreach%>  
+
+</div>
+					</div>
+		</div>
+		</div>
+
+		<div class="plugin_containers" style="left:196px;top:1300px;width:710px;height:550px;" layout_id="11402917" plugin_type="2" plugin_data_show_title="3" plugin_data_style="0" plugin_data_type="0" x="1" y="36" cx="1" cy="11">
+		<div class="plugin_body" style="width:710px;height:550px;">
+			<div class="plugin_title_border patt_border_plugin_title" style="width: 698px; height: 538px;">
+				<div class="plugin_title_pic bg_a patt_bg_plugin_title">
+					<div class="plugin_title patt_font_plugin_title">美酒人生、个人护理</div>
+						<ul class="plugin_title_searchkey">
+						</ul>
+				</div>
+				<div class="plugin_inner_border">
+					<div class="plugin_inner_content" style="width: 688px; height: 490px;">
+		<div class="showcase_main_content" goods_style="0" roll="False" direction="2" interval="2000">
+			<ul class="showcase_type0_goods">	
+            
+      <%set DataTable goodsf3=get_article_list("goods", 60, 4, "1=1","add_time desc")%>
+          <%foreach(DataRow dr in goodsf3.Rows)%>
+        <li class="goods_list" label_id="0" goods_id="{dr[id]}" RuleId="{dr[id]}" RuleType="" RuleStartTime=null RuleEndTime=null Price="{dr[sell_price]}" DiscountPrice="" style="padding: 12px 3px 8px;">
+				<div class="showcase_goods_style0">
+					<div class="showcase_goods_style0_img">
+						<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy" src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="width: 166px; height: 166px; margin-left: 0px; margin-top: 0px; display: inline;"></a>
+						<div id="Div12"><div class="sales_reduce"></div></div>
+					</div>
+					<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<p class="showcase_goods_style0_rmb">
+						<strong>现价：¥ <em id="Em23">{dr[sell_price]}</em></strong>
+					</p>
+				</div>
+	</li>
+
+      <%/foreach%>
+
+    <%set DataTable goodsf4=get_article_list("goods", 19, 4, "1=1","add_time desc")%>
+    <%foreach(DataRow dr in goodsf4.Rows)%>
+        <li class="goods_list" label_id="0" goods_id="{dr[id]}" RuleId="{dr[id]}" RuleType="" RuleStartTime=null RuleEndTime=null Price="{dr[sell_price]}" DiscountPrice="" style="padding: 12px 3px 8px;">
+				<div class="showcase_goods_style0">
+					<div class="showcase_goods_style0_img">
+						<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy" src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="width: 166px; height: 166px; margin-left: 0px; margin-top: 0px; display: inline;"></a>
+						<div id="Div13"><div class="sales_reduce"></div></div>
+					</div>
+					<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<p class="showcase_goods_style0_rmb">
+						<strong>现价：¥ <em id="Em24">{dr[sell_price]}</em></strong>
+					</p>
+				</div>
+	</li>
+
+
+      <%/foreach%>
+</ul>
+		</div>
+</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="plugin_containers" style="left:906px;top:1300px;width:294px;height:550px;" layout_id="11402918" plugin_type="1" plugin_data_show_title="1" plugin_data_style="1" plugin_data_type="7" x="2" y="36" cx="1" cy="11">
+		<div class="plugin_body" style="width:294px;height:550px;">
+					<div class="plugin_untitle_border patt_border_plugin_untitle" style="width: 272px; height: 528px;">
+						<div class="plugin_inner_content" style="width: 272px; height: 528px;">
+						<div class="image_type7_gap">
+							<div class="image_type7_bigimg li1" style="width:270px;height:337px;">
+           <%set DataTable topad4=get_article_list("photo", 0, 1, "status=0 and category_id=96","sort_id asc,add_time desc")%>
+          <%foreach(DataRow dr in topad4.Rows)%>
+                <a href="{dr[link_url]}" target="_blank"><img class="lazy " src="{dr[img_url]}" data-original="{dr[img_url]}" style="width: 270px; height: 337px; display: inline;"></a>
+          <%/foreach%>  
+							</div>
+							<ul class="image_type7_smallimg">
+	    <%set DataTable category_listpp1=get_category_child_listpp(4,"pingpai", 0, 60)%>
+        <%loop cdrpp1 category_listpp1%>
+        	<li class="li1" style="width:131px;height:53px;">
+		    <a target="_blank" href="goods_list.aspx?category_id=60&vote_id={cdrpp1[id]}"><img class="lazy" title="{cdrpp1[title]}" src="{cdrpp1[img_url]}" style="display: inline;"></a>
+			</li>
+			<%/loop%>
+                <%set DataTable category_listpp2=get_category_child_listpp(2,"pingpai", 0, 19)%>
+        <%loop cdrpp2 category_listpp2%>
+        	<li class="li1" style="width:131px;height:53px;">
+		    <a target="_blank" href="goods_list.aspx?category_id=19&vote_id={cdrpp2[id]}"><img class="lazy" title="{cdrpp2[title]}" src="{cdrpp2[img_url]}" style="display: inline;"></a>
+			</li>
+			<%/loop%>
+							</ul>
+						</div>
+</div>
+					</div>
+		</div>
+		</div>
+	
+    	<div class="plugin_containers" style="left:0px;top:1300px;width:196px;height:550px;" layout_id="11402910" plugin_type="4" plugin_data_show_title="3" plugin_data_style="2" plugin_data_type="0" x="0" y="23" cx="1" cy="11">
+		<div class="plugin_body" style="width:196px;height:550px;">
+			<div class="plugin_title_border patt_border_plugin_title" style="width: 184px; height: 538px;">
+				<div class="plugin_title_pic bg_a patt_bg_plugin_title">
+					<div class="plugin_title patt_font_plugin_title">精选推荐</div>
+				</div>
+				<div class="plugin_inner_border">
+					<div class="plugin_inner_content" style="width: 174px; height: 490px;">
+		<div class="showcase_main_content" goods_style="0" roll="False" direction="2" interval="2000">
+			<ul class="showcase_type2_goods">
+            
+          <%set DataTable goodsf12=get_article_list("goods", 60, 3, "is_top=1","add_time desc")%>
+          <%foreach(DataRow dr in goodsf12.Rows)%>
+
+    	<li class="goods_list" label_id="0" goods_id="8683" ruleid="6275" ruletype="1" rulestarttime="\/Date(1379779200000)\/" ruleendtime="\/Date(1444233600000)\/" price="232200" discountprice="10000" style="width: 174px;">
+			<div class="showcase_goods_style2">
+				<div class="showcase_goods_style2_img plugin_touch_cancel">
+					<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy"src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="display: inline;"></a>
+				</div>
+				<div class="a_text" style="width: 79px;">
+					<div class="a_text_dt"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<div class="a_text_dd"><strong>¥ <em id="Em3">{dr[sell_price]}</em></strong></div>
+				</div>
+			</div>
+	</li>
+      <%/foreach%>
+
+                <%set DataTable goodsf22=get_article_list("goods", 19, 2, "is_top=1","add_time desc")%>
+          <%foreach(DataRow dr in goodsf22.Rows)%>
+
+    	<li class="goods_list" label_id="0" goods_id="8683" ruleid="6275" ruletype="1" rulestarttime="\/Date(1379779200000)\/" ruleendtime="\/Date(1444233600000)\/" price="232200" discountprice="10000" style="width: 174px;">
+			<div class="showcase_goods_style2">
+				<div class="showcase_goods_style2_img plugin_touch_cancel">
+					<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy"src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="display: inline;"></a>
+				</div>
+				<div class="a_text" style="width: 79px;">
+					<div class="a_text_dt"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<div class="a_text_dd"><strong>¥ <em id="Em6">{dr[sell_price]}</em></strong></div>
+				</div>
+			</div>
+	</li>
+      <%/foreach%>
+</ul>
+		</div>
+</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+
+        <div class="plugin_containers" style="left:196px;top:1850px;width:710px;height:550px;" layout_id="11402917" plugin_type="2" plugin_data_show_title="3" plugin_data_style="0" plugin_data_type="0" x="1" y="36" cx="1" cy="11">
+		<div class="plugin_body" style="width:710px;height:550px;">
+			<div class="plugin_title_border patt_border_plugin_title" style="width: 698px; height: 538px;">
+				<div class="plugin_title_pic bg_a patt_bg_plugin_title">
+					<div class="plugin_title patt_font_plugin_title">日用家居、锅具餐具</div>
+						<ul class="plugin_title_searchkey">
+						</ul>
+				</div>
+				<div class="plugin_inner_border">
+					<div class="plugin_inner_content" style="width: 688px; height: 490px;">
+		<div class="showcase_main_content" goods_style="0" roll="False" direction="2" interval="2000">
+			<ul class="showcase_type0_goods">	
+            
+      <%set DataTable goodsf5=get_article_list("goods", 52, 4, "1=1","add_time desc")%>
+          <%foreach(DataRow dr in goodsf5.Rows)%>
+        <li class="goods_list" label_id="0" goods_id="{dr[id]}" RuleId="{dr[id]}" RuleType="" RuleStartTime=null RuleEndTime=null Price="{dr[sell_price]}" DiscountPrice="" style="padding: 12px 3px 8px;">
+				<div class="showcase_goods_style0">
+					<div class="showcase_goods_style0_img">
+						<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy" src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="width: 166px; height: 166px; margin-left: 0px; margin-top: 0px; display: inline;"></a>
+						<div id="Div3"><div class="sales_reduce"></div></div>
+					</div>
+					<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<p class="showcase_goods_style0_rmb">
+						<strong>现价：¥ <em id="Em8">{dr[sell_price]}</em></strong>
+					</p>
+				</div>
+	</li>
+
+      <%/foreach%>
+
+    <%set DataTable goodsf6=get_article_list("goods", 43, 4, "1=1","add_time desc")%>
+    <%foreach(DataRow dr in goodsf6.Rows)%>
+        <li class="goods_list" label_id="0" goods_id="{dr[id]}" RuleId="{dr[id]}" RuleType="" RuleStartTime=null RuleEndTime=null Price="{dr[sell_price]}" DiscountPrice="" style="padding: 12px 3px 8px;">
+				<div class="showcase_goods_style0">
+					<div class="showcase_goods_style0_img">
+						<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy" src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="width: 166px; height: 166px; margin-left: 0px; margin-top: 0px; display: inline;"></a>
+						<div id="Div4"><div class="sales_reduce"></div></div>
+					</div>
+					<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<p class="showcase_goods_style0_rmb">
+						<strong>现价：¥ <em id="Em9">{dr[sell_price]}</em></strong>
+					</p>
+				</div>
+	</li>
+
+
+      <%/foreach%>
+
+
+</ul>
+		</div>
+</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="plugin_containers" style="left:906px;top:1850px;width:294px;height:550px;" layout_id="11402918" plugin_type="1" plugin_data_show_title="1" plugin_data_style="1" plugin_data_type="7" x="2" y="36" cx="1" cy="11">
+		<div class="plugin_body" style="width:294px;height:550px;">
+					<div class="plugin_untitle_border patt_border_plugin_untitle" style="width: 272px; height: 528px;">
+						<div class="plugin_inner_content" style="width: 272px; height: 528px;">
+						<div class="image_type7_gap">
+							<div class="image_type7_bigimg li1" style="width:270px;height:337px;">
+		 <%set DataTable topad5=get_article_list("photo", 0, 1, "status=0 and category_id=97","sort_id asc,add_time desc")%>
+          <%foreach(DataRow dr in topad5.Rows)%>
+                <a href="{dr[link_url]}" target="_blank"><img class="lazy " src="{dr[img_url]}" data-original="{dr[img_url]}" style="width: 270px; height: 337px; display: inline;"></a>
+          <%/foreach%>  
+							</div>
+							<ul class="image_type7_smallimg">
+								   <%set DataTable category_listpp3=get_category_child_listpp(4,"pingpai", 0, 52)%>
+        <%loop cdrpp3 category_listpp3%>
+        	<li class="li1" style="width:131px;height:53px;">
+		    <a target="_blank" href="goods_list.aspx?category_id=52&vote_id={cdrpp3[id]}"><img class="lazy" title="{cdrpp3[title]}" src="{cdrpp3[img_url]}" style="display: inline;"></a>
+			</li>
+			<%/loop%>
+
+        <%set DataTable category_listpp4=get_category_child_listpp(2,"pingpai", 0, 43)%>
+        <%loop cdrpp4 category_listpp4%>
+        	<li class="li1" style="width:131px;height:53px;">
+		    <a target="_blank" href="goods_list.aspx?category_id=43&vote_id={cdrpp4[id]}"><img class="lazy" title="{cdrpp4[title]}" src="{cdrpp4[img_url]}" style="display: inline;"></a>
+			</li>
+			<%/loop%>
+							</ul>
+						</div>
+</div>
+					</div>
+		</div>
+		</div>
+		<div class="plugin_containers" style="left:0px;top:1850px;width:196px;height:550px;" layout_id="11402910" plugin_type="4" plugin_data_show_title="3" plugin_data_style="2" plugin_data_type="0" x="0" y="23" cx="1" cy="11">
+		<div class="plugin_body" style="width:196px;height:550px;">
+			<div class="plugin_title_border patt_border_plugin_title" style="width: 184px; height: 538px;">
+				<div class="plugin_title_pic bg_a patt_bg_plugin_title">
+					<div class="plugin_title patt_font_plugin_title">精选推荐</div>
+				</div>
+				<div class="plugin_inner_border">
+					<div class="plugin_inner_content" style="width: 174px; height: 490px;">
+		<div class="showcase_main_content" goods_style="0" roll="False" direction="2" interval="2000">
+			<ul class="showcase_type2_goods">	
+            
+            <%set DataTable goodsf13=get_article_list("goods", 52, 3, "is_top=1","add_time desc")%>
+          <%foreach(DataRow dr in goodsf13.Rows)%>
+
+    	<li class="goods_list" label_id="0" goods_id="8683" ruleid="6275" ruletype="1" rulestarttime="\/Date(1379779200000)\/" ruleendtime="\/Date(1444233600000)\/" price="232200" discountprice="10000" style="width: 174px;">
+			<div class="showcase_goods_style2">
+				<div class="showcase_goods_style2_img plugin_touch_cancel">
+					<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy"src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="display: inline;"></a>
+				</div>
+				<div class="a_text" style="width: 79px;">
+					<div class="a_text_dt"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<div class="a_text_dd"><strong>¥ <em id="Em4">{dr[sell_price]}</em></strong></div>
+				</div>
+			</div>
+	</li>
+      <%/foreach%>
+                  
+            <%set DataTable goodsf23=get_article_list("goods", 43, 2, "is_top=1","add_time desc")%>
+          <%foreach(DataRow dr in goodsf23.Rows)%>
+
+    	<li class="goods_list" label_id="0" goods_id="8683" ruleid="6275" ruletype="1" rulestarttime="\/Date(1379779200000)\/" ruleendtime="\/Date(1444233600000)\/" price="232200" discountprice="10000" style="width: 174px;">
+			<div class="showcase_goods_style2">
+				<div class="showcase_goods_style2_img plugin_touch_cancel">
+					<a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>"><img class="lazy"src="{dr[img_url]}" alt="{dr[title]}"  data-original="{dr[img_url]}" style="display: inline;"></a>
+				</div>
+				<div class="a_text" style="width: 79px;">
+					<div class="a_text_dt"><p class="nav_p_hover"><a target="_blank" href="<%linkurl("goods_show",{dr[id]})%>" title="{dr[title]}">{dr[title]}</a></p></div>
+					<div class="a_text_dd"><strong>¥ <em id="Em5">{dr[sell_price]}</em></strong></div>
+				</div>
+			</div>
+	</li>
+      <%/foreach%>
+</ul>
+		</div>
+</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+</div>
+		</div>
+	</div>
+
+<!--滑动门js-s-->
+<script src="<%templateskin%>/images/istore_static_display.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var plugin_save_level = 0;
+   var istore_display = null;
+	    //$(document).ready(function () {
+	    // Page的ID设置
+	    istore_option.page_id = 2406251;
+	    istore_option.store_info = {
+	        multiuser_support: "False" == "True",
+	        seller_sub_id: 0
+	    };
+	    // 启动页面布局
+	    var istore_static = null;
+	    istore_static = new iStoreStatic(istore_option, plugin_option, "#display_containers");
+	    istore_static.show_store_display();
+	    //	});
+	</script>
+<!--滑动门js-end-->
+
+    <!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+
+</body>
+</html>

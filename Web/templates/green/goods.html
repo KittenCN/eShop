@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>积分商城 - {config.webname}</title>
+<link media="screen" type="text/css" href="<%templateskin%>/css/style.css" rel="stylesheet">
+<script type="text/javascript" src="{config.webpath}scripts/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/js/base.js"></script>
+<link media="screen" type="text/css" rel="stylesheet" href="<%templateskin%>/images/jquery-ui.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/css/common.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/maincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/mainplugincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/deputycolor_0.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/bordercolor_2.css" >
+<script type="text/javascript" src="<%templateskin%>/images/jquery-ui-1.11.1.custom.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/images/common.min.js"></script>
+<script type="text/javascript"  src="<%templateskin%>/images/jquery.filedownload.min.js"></script>
+
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+	<div id="main">
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+<div  style="height:10px;"></div>
+
+<div class="boxwrap">
+  <div class="left710">
+
+   <!--Content-->
+    <div class="main_box">
+      <div class="clear"></div>
+          <dl class="head green">
+        <dd>
+          <span>当前位置：<a href="<%linkurl("index")%>">首页 </a>> 积分商城</span>
+        </dd>
+      </dl>
+      <div class="pro_list">
+        <ul>
+          <%set DataTable goods_list=get_article_list("down", 0, 16, "status=0 and channel_id=4")%>
+          <%foreach(DataRow dr in goods_list.Rows)%>
+          <li>
+            <a class="pic" title="{dr[title]}"><img src="{dr[img_url]}" alt="{dr[title]}" /></a>
+            <div class="info">
+              <a class="name"  title="{dr[title]}">{dr[title]}</a>
+              <div class="price">
+                <span>积分：</span>
+                <strong>￥{dr[point]}</strong>
+              </div>
+            </div>
+          </li>
+          <%/foreach%>
+        </ul>
+      </div>
+      
+    </div>
+    <!--/Content-->
+  </div>
+  
+  <div class="left264">
+    <!--Sidebar-->
+    <div class="sidebar">
+      <h3>商品类别</h3>
+      <ul class="navbar">
+        <%set DataTable category_list28=get_category_child_list("goods", 0)%>
+        <%loop cdr28 category_list28%>
+        <li>
+          <h4><a href="<%linkurl("goods_list",{cdr28[id]})%>">{cdr28[title]}</a></h4>
+          <div class="list">
+            <%set DataTable category_list29=get_category_child_list("goods", {strtoint({cdr28[id]})})%>
+            <%loop cdr29 category_list29%>
+            <a href="<%linkurl("goods_list",{cdr29[id]})%>">{cdr29[title]}</a>
+            <%/loop%>
+          </div>
+        </li>
+        <%/loop%>
+      </ul>
+      <div class="clear"></div>
+      <h3><a class="arrow" href="<%linkurl("goods")%>" title="查看更多">&gt;</a>推荐商品</h3>
+      <div class="focus_list">
+        <ul>
+          <%set DataTable redgoods=get_article_list("goods", 0, 6, "is_red=1 and img_url<>''")%>
+          <%foreach(DataRow dr in redgoods.Rows)%>
+          <li>
+            <a title="{dr[title]}" href="<%linkurl("goods_show",{dr[id]})%>">
+              <img src="{dr[img_url]}" width="100" height="100" alt="{dr[title]}" />
+              <span>{dr[title]}</span>
+            </a>
+          </li>
+          <%/foreach%>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <h3><a class="arrow" href="<%linkurl("goods")%>" title="查看更多">&gt;</a>人气排行</h3>
+      <ul class="rank_list">
+        <%set DataTable hotgoods=get_article_list("goods", 0, 10, "", "click desc,id desc")%>
+        <%loop hotdr hotgoods%>
+        <%if(hotdr__loop__id==1)%>
+        <li class="active">
+        <%else%>
+        <li>
+        <%/if%>
+          <span><%datetostr({hotdr[add_time]},MM-dd)%></span>
+          <i class="num"><%write hotdr__loop__id%></i><a href="<%linkurl("goods_show",{hotdr[id]})%>">{hotdr[title]}</a>
+        </li>
+        <%/loop%>
+      </ul>
+    </div>
+    <!--/Sidebar-->
+  </div>
+</div>
+
+<div class="clear"></div>
+</div>
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>

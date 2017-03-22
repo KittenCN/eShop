@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>站内搜索 - {config.webname}</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+<link rel="stylesheet" href="{config.webpath}css/pagination.css" />
+<link media="screen" type="text/css" href="<%templateskin%>/css/style.css" rel="stylesheet">
+<script type="text/javascript" src="{config.webpath}scripts/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/js/base.js"></script>
+<link media="screen" type="text/css" rel="stylesheet" href="<%templateskin%>/images/jquery-ui.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/css/common.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/maincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/mainplugincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/deputycolor_0.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/bordercolor_2.css" >
+<script type="text/javascript" src="<%templateskin%>/images/jquery-ui-1.11.1.custom.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/images/common.min.js"></script>
+<script type="text/javascript"  src="<%templateskin%>/images/jquery.filedownload.min.js"></script>
+
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+	<div id="main">
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+<div  style="height:10px;"></div>
+
+<div class="boxwrap">
+  <div class="main_box">
+    <%set DataTable list=get_search_list(15, out totalcount)%> <!--取得一个DataTable-->
+	<%set string pagelist=get_page_link(15, page, totalcount, linkurl("search","?channel_name="+channel_name+"&keyword=" + Server.UrlEncode(keyword) + "&page=__id__"))%> <!--取得分页页码列表-->
+    <h1 class="main_tit">
+      站内搜索<strong>Search</strong>
+      <i>搜索关健字： <b class="blue">{keyword}</b> ，共有 <b class="red">{totalcount}</b> 条记录</i>
+    </h1>
+    <div class="line20"></div>
+    <ul class="search_list">
+      <%loop dr list%>
+      <%if(dr["name"].ToString()=="goods")%>
+      <li style=" height:160px">
+            <div style="float:left; width:18%"><a   href="{dr[link_url]}" title="{dr[title]}"><img  style="width: 152px;height: 152px;" src="{dr[img_url]}" alt="{dr[title]}"></a></div>
+            <div style="float:left; width:75%; margin-left:20px">
+             <p><a target="_blank" href="{dr[link_url]}">{dr[title]}</a><span>( <%datetostr({dr[add_time]},yyyy-MM-dd)%> )</span></p>
+             <p>{dr[remark]}</p>
+            </div>
+          </li>
+      <%else%>
+        <li>
+            <a target="_blank" href="{dr[link_url]}">{dr[title]}</a><span>( <%datetostr({dr[add_time]},yyyy-MM-dd)%> )</span>
+            <p>{dr[remark]}</p>
+        </li>
+      <%/if%>
+
+
+      
+      <%/loop%>
+    </ul>
+    <div class="clear"></div>
+    <div class="flickr">{pagelist}</div> <!--放置页码列表-->
+  </div>
+</div>
+
+<div class="clear"></div>
+</div>
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>

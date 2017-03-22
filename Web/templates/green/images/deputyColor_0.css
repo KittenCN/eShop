@@ -1,0 +1,32 @@
+/*插件-标题*/
+.patt_bg_plugin_title
+{
+    background: #eaeef9;
+}
+.patt_font_plugin_title
+{
+    font-size: 14px;
+	color: #435e6c;
+}
+.patt_font_plugin_title_searchkey
+{
+	font-weight:normal;
+	color:#333;
+}
+.patt_font_plugin_title_searchkey:hover
+{
+	color:#c30000;
+    text-decoration:underline;
+}
+
+
+/*多标签橱窗字体颜色*/
+.patt_border_showcase_type1_title a 
+    {
+        font-size: 14px;
+		color: #435e6c;
+        font-weight:bold;
+    }
+
+
+

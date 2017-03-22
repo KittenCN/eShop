@@ -1,0 +1,167 @@
+<script src="<%templateskin%>/images/logon_status.js" type="text/javascript"></script>
+ <script type="text/javascript"  src="<%templateskin%>/js/base.js"></script>
+<script type="text/javascript">
+    var Configure = {
+        Third_Jump: "http://",
+        ShowHeader: true,
+        ShowZhuyun: true,
+        ShowNav: true
+    };
+    var browser_now = new Date();
+    function is_logon() {
+        return logon_type != null;
+    }
+    function get_logon_type() {
+        return logon_type;
+    }
+    function get_logon_name() {
+        return logon_name;
+    }
+    function get_logon_now() {
+        return logon_now;
+    }
+    function get_real_now() {
+        var diff = browser_now.getTime() - logon_now.getTime();
+        var now = new Date();
+        return new Date(now.getTime() - diff);
+    }
+</script>
+
+<div id="store_header">
+	<div class="header">
+		<div class="header_tt">
+        <a class="Collect" href="javascript:if(document.all){window.external.addFavorite('http://www.goodebuy.com','好宜买');}else if(window.sidebar){window.sidebar.addPanel('好宜买', 'http://www.goodebuy.com','');}" title="加入收藏">收藏本站</a>	
+            		    <script type="text/javascript">
+            		        $.ajax({
+            		            type: "POST",
+            		            url: "{config.webpath}tools/submit_ajax.ashx?action=user_check_login",
+            		            dataType: "json",
+            		            timeout: 20000,
+            		            success: function (data, textStatus) {
+            		                if (data.status == 1) {
+            		                    $("#menu").append('<li><a href="<%linkurl("usercenter","exit")%>">退出</a></li>');
+            		                    $("#menu").append('<li><a href="<%linkurl("usercenter","index")%>">会员中心</a></li>');
+            		                } else {
+            		                    $("#menu").append('<li><a href="<%linkurl("register")%>">注册</a></li>');
+            		                    $("#menu").append('<li><a href="<%linkurl("login")%>">登录</a></li>');
+            		                }
+            		            }
+            		        });
+    </script>
+            <ul class="header_login" id="menu" >
+      <li><a href="<%linkurl("content","lianxiwomen")%>">联系我们</a></li>
+    
+			</ul>
+		</div>
+	</div>
+		<div id="header_content_box"><div id="header_content">
+</div></div>
+			<div class="header_style0">
+				<div class="header_logo_content">
+					<div class="header_logo_gox">
+						<ul>
+							<li class="header_logo" id="store_info_logo"><a href="index.aspx"><img alt="{config.webname}" title="{config.webname}" src="<%templateskin%>/images/logo.jpg"></a></li>
+							<li class="header_search" id="show_store_search">
+								<div class="header_search_input patt_bg_search patt_border_search">
+<input id="keywords" name="keywords" remind="" value="" type="text" x-webkit-speech="" autofocus="" placeholder="输入回车搜索" onkeydown="if(event.keyCode==13){SiteSearch('<%linkurl("search")%>', '#keywords');return false};" />
+      <a onclick="SiteSearch('<%linkurl("search")%>', '#keywords');" ><p id="search_button" class="patt_font_search">搜索</p></a>						
+								</div>
+							</li>
+							<li class="header_ad" id="store_info_ad">
+								<ul>
+										<li class="ad_phone_photo"><img src="<%templateskin%>/images/ad_photo.png"></li>
+										<li class="ad_phone">0551-88888888</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="header_navbox patt_bg_nav">
+					<div class="header_nav">
+						<div class="header_sort patt_bg_sort">&nbsp;
+							<span>全部商品分类</span>
+							<div class="header_button_b"></div>
+							<div class="Nav_TitleStyleBox" style="position: absolute;top: 33px;width: 183px;left: -6px;display:none">
+								<div class="nav_style1_main_content_border">
+								<div class="nav_style1_main_content">
+									<ul class="nav_style1_content nav_style1_color1" style="cursor: default;">
+         <%set DataTable category_list33=get_category_child_list("goods", 0)%>
+        <%loop cdr33 category_list33%>
+											<li class="class1 nav_style1_content_li" class1_id="6461"><p class="nav_p"><a target="_blank"  href="<%linkurl("goods_list",{cdr33[id]})%>">{cdr33[title]}</a></p><div class="nav_style1_button_arrow icon_nav_arrow"></div></li>
+											<%/loop%>
+									</ul>
+         <%set DataTable category_list44=get_category_child_list("goods", 0)%>
+        <%loop cdr44 category_list44%>
+										<div class="nav_style1_sub patt_header_leftnav" style="display: none;">
+												<dl class="nav_style1_sub_class2">
+													<dt class="class2" class2_id="7524"><a target="_blank" href="<%linkurl("goods_list",{cdr44[id]})%>">{cdr44[title]}</a></a></dt>
+													<dd>
+          <%set DataTable category_list55=get_category_child_list("goods", {strtoint({cdr44[id]})})%>
+            <%loop cdr55 category_list55%>
+															<em class="class3" class3_id="10006"><a target="_blank" href="<%linkurl("goods_list",{cdr55[id]})%>">{cdr55[title]}</a></em>
+																<%/loop%>
+													</dd>
+												</dl>
+												
+										</div>
+									<%/loop%>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="header_sortnav" id="show_store_menu">
+							<ul class="menu_hot">
+
+         <li class="header_cheaked patt_bg_header_checked"><a href="<%linkurl("index")%>">首页</a></li>
+        <li><a href="<%linkurl("goods")%>">积分商城</a></li>
+        <li><a href="<%linkurl("content","ruhexiadan")%>">购物流程</a></li>
+        <li><a href="<%linkurl("content","zoujinwomen")%>">关于我们</a></li>	
+        <li><a href="<%linkurl("content","peisongshijian")%>">配送服务</a></li>
+        <li><a href="<%linkurl("content","lianxiwomen")%>">联系我们</a></li>										
+							</ul>
+						</div>
+						<div class="header_cart_box">
+							<div class="header_cart"> <a href="<%linkurl("shopping","cart")%>">购物车<script type="text/javascript" src="{config.webpath}tools/submit_ajax.ashx?action=view_cart_count"></script>件</a></div>
+							<div class="small_cart"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+	<div id="show_store_nav">
+			<div class="header_subnavbox">
+				<div class="header_subnav_header">
+					<div style="width:1190px;height:32px;overflow:hidden;position:relative;z-index:1">
+					<ul class="header_subnav" style="width: 792px;">
+                    <%set DataTable category_list22=get_category_child_list("goods", 0)%>
+        <%loop cdr22 category_list22%>
+							<li class="subnav_li"><a  class="class1" class1_id="6461" href="<%linkurl("goods_list",{cdr22[id]})%>">{cdr22[title]}</a><div class="header_button_a"></div></li>
+			<%/loop%>
+					</ul>
+					</div>
+					<div class="header_subclass">
+       <%set DataTable category_list3=get_category_child_list("goods", 0)%>
+        <%loop cdr3 category_list3%>
+							<div class="header_subclass_nav" style="display: none;">
+								<div class="header_subclass_nav_content">
+									<div class="header_subclass_nav_goods patt_header_subnav">
+										<dl class="header_subclass_nav_a">
+											<dt><a class="class2" class2_id="7524" href="<%linkurl("goods_list",{cdr3[id]})%>">{cdr3[title]}</a></dt>
+											<dd>
+             <%set DataTable category_list21=get_category_child_list("goods", {strtoint({cdr3[id]})})%>
+            <%loop cdr21 category_list21%>
+												<em><a class="class3" class3_id="10006" href="<%linkurl("goods_list",{cdr21[id]})%>">{cdr21[title]}</a></em>
+											    <%/loop%>
+											</dd>
+										</dl>
+										
+									</div>
+								</div>
+							</div>
+              <%/loop%>
+
+					</div>
+				</div>
+			</div>
+	</div>
+</div>

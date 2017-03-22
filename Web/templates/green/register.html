@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员注册 - {config.webname}</title>
+<meta content="{config.webkeyword}" name="keywords" />
+<meta content="{config.webdescription}" name="description" />
+<link media="screen" type="text/css" href="<%templateskin%>/css/style.css" rel="stylesheet">
+<script type="text/javascript" src="{config.webpath}scripts/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="{config.webpath}scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+<script type="text/javascript" src="<%templateskin%>/js/base.js"></script>
+
+<link media="screen" type="text/css" rel="stylesheet" href="<%templateskin%>/images/jquery-ui.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/css/common.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/maincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/mainplugincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/deputycolor_0.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/bordercolor_2.css" >
+<script type="text/javascript" src="<%templateskin%>/images/jquery-ui-1.11.1.custom.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/images/common.min.js"></script>
+<script type="text/javascript"  src="<%templateskin%>/images/jquery.filedownload.min.js"></script>
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+	<div id="main">
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+<div  style="height:10px;"></div>
+
+<div class="boxwrap">
+  <div class="main_box">
+    <h1 class="main_tit">
+      会员注册<strong>Register</strong>
+    </h1>
+
+    <div class="reg-box">
+      <div class="reg-top">
+        <ul class="step{action}">
+          <li class="step1"><em>1</em>填写会员信息</li>
+          <%if(uconfig.regverify>0)%>
+          <li class="step2"><em>2</em>验证/审核</li>
+          <li class="step3"><em>3</em>注册成功</li>
+          <%else%>
+          <li class="step3"><em>2</em>注册成功</li>
+          <%/if%>
+        </ul>
+      </div>
+      <%if(action=="")%>
+      <div class="reg-con">
+        <!--用户注册-->
+        <link rel="stylesheet" href="{config.webpath}css/validate.css" />
+		<script type="text/javascript" src="{config.webpath}scripts/jquery/jquery.form.min.js"></script>
+        <script type="text/javascript" src="{config.webpath}scripts/jquery/Validform_v5.3.2_min.js"></script>
+        <script type="text/javascript" src="<%templateskin%>/js/register_validate.js"></script>
+        <form id="regform" name="regform" url="{config.webpath}tools/submit_ajax.ashx?action=user_register">
+          <%if(uconfig.regstatus==3)%>
+          <dl>
+            <dt><em>*</em>邀请码：</dt>
+            <dd>
+              <input id="txtInviteCode" name="txtInviteCode" class="input wide" type="text" datatype="*" sucmsg=" " />
+              <span class="Validform_checktip"></span>
+              <i>（仅通过邀请码注册，获取邀请码请联系相关人员。）</i>
+            </dd>
+          </dl>
+          <%/if%>
+          <dl>
+            <dt><em>*</em>用户名：</dt>
+            <dd>
+              <input id="txtUserName" name="txtUserName" class="input wide" type="text" datatype="s3-50" nullmsg="请输入用户名" sucmsg=" " ajaxurl="{config.webpath}tools/submit_ajax.ashx?action=validate_username" />
+              <span class="Validform_checktip"></span>
+              <i>（5-20位字母、数字或下划线组合，首字符必须为字母。）</i>
+            </dd>
+          </dl>
+          <dl>
+            <dt><em>*</em>密码：</dt>
+            <dd>
+              <input id="txtPassword" name="txtPassword" class="input wide" type="password" datatype="*6-20" nullmsg="请输入密码" errormsg="密码范围在6-20位之间" sucmsg=" " />
+              <span class="Validform_checktip"></span>
+              <i>（为了您的帐户安全，强烈建议您的密码使用字符+数字等多种不同类型的组合，并且密码长度大于6位。）</i>
+            </dd>
+          </dl>
+          <dl>
+            <dt><em>*</em>确认密码：</dt>
+            <dd>
+              <input id="txtPassword1" name="txtPassword1" class="input wide" type="password" datatype="*" recheck="txtPassword" nullmsg="请再输入一次密码" errormsg="两次输入的密码不一致" sucmsg=" " />
+              <span class="Validform_checktip"></span>
+              <i>（确保密码输入正确。）</i>
+            </dd>
+          </dl>
+          <dl>
+            <dt><em>*</em>手机号码：</dt>
+            <dd>
+              <input id="txtMobile" name="txtMobile" class="input wide" type="text" datatype="m" nullmsg="请再输入手机号码" sucmsg=" " />
+              <span class="Validform_checktip"></span>
+              <i>（填写正确的手机号码，忘记密码时可以通过短信找回！）</i>
+            </dd>
+          </dl>
+                 <dl>
+            <dt><em>*</em>您所在的小区：</dt>
+            <dd>
+    <div class="rule-multi-radio">
+ <%set DataTable listxq=get_user_express_list("1=1")%> 
+  <select name="ddlExpressId" id="ddlExpressId" datatype="*" errormsg="请选择配送小区" sucmsg=" ">
+	<option value="">请选择配送小区...</option>
+      <%loop drxq listxq%>
+       	<option  value="{drxq[id]}"> {drxq[title]}</option>
+ <%/loop%>
+ </select>
+    </div>
+              <span class="Validform_checktip"></span>
+              <i>（填写正确的您所在的小区，方便我们能及时给您送货！）</i>
+            </dd>
+          </dl>
+          <dl>
+            <dt><em>*</em>Email：</dt>
+            <dd>
+              <input id="txtEmail" name="txtEmail" class="input wide" type="text" datatype="e" nullmsg="请再输入邮箱地址" sucmsg=" " />
+              <span class="Validform_checktip"></span>
+              <i>（填写正确的邮箱地址，忘记密码时可以通过邮箱找回！）</i>
+            </dd>
+          </dl>
+
+
+
+          <dl>
+            <dt><em>*</em>验证码：</dt>
+            <dd>
+              <%if(uconfig.regstatus==2)%>
+              <input id="txtCode" name="txtCode" class="input small" type="text" disabled="disabled" datatype="s4-20" style="ime-mode:disabled;text-transform:uppercase;">
+              <input id="btnSendcode" type="button" class="btn" value="获取验证码" url="{config.webpath}tools/submit_ajax.ashx?action=user_register_smscode" />
+              <i>（通过手机短信获取验证码，不区别大小写！）</i>
+              <%else%>
+              <input id="txtCode" name="txtCode" class="input small" type="text" datatype="s4-20" style="ime-mode:disabled;text-transform:uppercase;">
+              <a id="verifyCode" style="display:none;" href="javascript:;" onclick="ToggleCode(this, '{config.webpath}tools/verify_code.ashx');return false;"><img src="{config.webpath}tools/verify_code.ashx" width="80" height="22" /> 看不清楚？</a>
+              <span class="Validform_checktip"></span>
+              <i>（单击显示验证码，不区别大小写！）</i>
+              <%/if%>
+            </dd>
+          </dl>
+          <%if(uconfig.regrules==1)%>
+          <dl>
+            <dt><em>*</em>注册条款：</dt>
+            <dd>
+              <input id="chkAgree" type="checkbox" value="1" name="chkAgree">
+              <label for="chkAgree">我已仔细阅读并接受<a href="javascript:;" onclick="showWindow('regrules');">注册许可协议</a>。</label>
+              <div id="regrules" title="注册许可协议" style="display:none;">{uconfig.regrulestxt}</div>
+            </dd>
+          </dl>
+          <%/if%>
+          <dl>
+            <dt></dt>
+            <dd>
+              <%if(uconfig.regrules==1)%>
+              <input id="btnSubmit" name="btnSubmit" type="submit" class="btn_submit" value="注 册" disabled="disabled" />
+              <%else%>
+              <input id="btnSubmit" name="btnSubmit" type="submit" class="btn_submit" value="注 册" />
+              <%/if%>
+            </dd>
+          </dl>
+        </form>
+        <!--用户注册-->
+      </div>
+      <%/if%>
+      
+      <%if(action=="close")%>
+      <!--关闭会员注册-->
+      <div class="msg_tips">
+        <div class="ico warning"></div>
+        <div class="msg">
+          <strong>非常抱歉，系统暂停注册会员服务！</strong>
+          <p>由于某些原因，系统暂停注册会员，如对您造成不便之处，我们深感遗憾！</p>
+          <p>如需了解开放时间，请联系本站客服或管理员。</p>
+          <p>您可以点击这里<a href="<%linkurl("index")%>">返回网站首页</a></p>
+        </div>
+      </div>
+      <!--关闭会员注册-->
+      <%/if%>
+      
+      
+      <%if(action=="sendmail")%>
+      <!--发送邮箱验证-->
+      <div class="msg_tips">
+        <div class="ico warning"></div>
+        <div class="msg">
+          <strong>注册成功，您的账户目前处于未验证状态！</strong>
+          <p>欢迎您成为本站会员，您的账户目前处于未验证状态，请尽快登录您的注册邮箱激活该会员账户。</p>
+          <p>系统已经自动为您发送了一封验证邮件，如果您长时间未收到邮件，请点击这里<a href="javascript:;" onclick="SendEmail('{username}', '{config.webpath}tools/submit_ajax.ashx?action=user_verify_email');">重新发送邮件</a>！</p>
+          <i>温馨提示：邮件验证有效期为
+          <%if {uconfig.regemailexpired}>0%>
+          {uconfig.regemailexpired}天
+          <%else%>
+          无限制
+          <%/if%>
+          </i>
+        </div>
+      </div>
+      <!--发送邮箱验证-->
+      <%/if%>
+
+      <%if(action=="checkmail")%>
+      <!--邮箱验证成功-->
+      <div class="msg_tips">
+        <div class="ico"></div>
+        <div class="msg">
+          <strong>恭喜您{username}，已通过邮件激活会员账户</strong>
+          <p>您的会员账户已经激活啦，从现在起，你可以享受更多的会员服务，还等什么呢？</p>
+          <p>赶快点击这里返回<a href="<%linkurl("index")%>">首页</a>，点击这里<a href="<%linkurl("usercenter","index")%>">进入会员中心</a>吧！</p>
+        </div>
+      </div>
+      <!--邮箱验证成功-->
+      <%/if%>
+
+      <%if(action=="checkerror")%>
+      <!--注册验证失败-->
+      <div class="msg_tips">
+        <div class="ico error"></div>
+        <div class="msg">
+          <strong>出错啦，该用户不存在或验证已过期！</strong>
+          <p>无法验证你的账户，不知神马原因，可能是你的用户名不存在或者验证码已经过期啦！</p>
+          <p>不过别担心，如果您还记得你的会员名称的话，点击这里<a href="<%linkurl("login")%>">进入会员中心</a>吧。</p>
+        </div>
+      </div>
+      <!--注册验证失败-->
+      <%/if%>
+      
+      <%if(action=="verify")%>
+      <!--人工审核-->
+      <div class="msg_tips">
+        <div class="ico warning"></div>
+        <div class="msg">
+          <strong>账户处于未审核状态，请等待人工审核通过！</strong>
+          <p>很抱歉亲爱的，您的会员账户还没有审核通过呢，再等等吧，实在等不及的话请联系本站客服人员！</p>
+          <p>由于种种原因，本站不得以暂时开启人工审核，如对您造成不便敬请原谅哦。</p>
+          <p>您可以点击这里<a href="<%linkurl("index")%>">返回网站首页</a></p>
+        </div>
+      </div>
+      <!--人工审核-->
+      <%/if%>
+      
+      <%if(action=="succeed")%>
+      <!--注册成功-->
+      <div class="msg_tips">
+        <div class="ico"></div>
+        <div class="msg">
+          <strong>恭喜您{username}，成功注册成为本站会员！</strong>
+          <p>您已经是本站的会员啦，从现在起，你可以享受更多的会员服务，还等什么呢？</p>
+          <p>赶快点击这里返回<a href="<%linkurl("index")%>">首页</a>或点击这里<a href="<%linkurl("usercenter","index")%>">进入会员中心</a>吧！</p>
+        </div>
+      </div>
+      <!--注册成功-->
+      <%/if%>
+
+    </div>
+
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div class="clear"></div>
+</div>
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>

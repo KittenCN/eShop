@@ -1,0 +1,38 @@
+﻿      <%set int comment_count=get_comment_count(model.id, "is_lock=0")%><!--取得评论总数-->
+      <link rel="stylesheet" href="{config.webpath}css/validate.css" />
+      <link rel="stylesheet" href="{config.webpath}css/pagination.css" />
+      <script type="text/javascript" src="{config.webpath}scripts/jquery/jquery.form.min.js"></script>
+      <script type="text/javascript" src="{config.webpath}scripts/jquery/Validform_v5.3.2_min.js"></script>
+      <script type="text/javascript" src="{config.webpath}scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+      <script type="text/javascript" src="{config.webpath}scripts/jquery/jquery.pagination.js"></script>
+      <script type="text/javascript">
+        $(function(){
+          //初始化评论列表
+          AjaxPageList('#comment_list', '#pagination', 10, {comment_count}, '{config.webpath}tools/submit_ajax.ashx?action=comment_list&article_id={model.id}', '<%templateskin%>/images/user_avatar.png');
+          //初始化发表评论表单
+          AjaxInitForm('comment_form', 'btnSubmit', 1);
+        });
+      </script>
+      <div class="comment_box">
+        <h3 class="base_tit"><span><a href="#Add">发表评论</a></span>共有{comment_count}访客发表了评论</h3>
+        <ol id="comment_list" class="comment_list">
+          <p style="line-height:35px;">暂无评论，快来抢沙发吧！</p>
+
+        </ol>
+      </div>
+      <div class="line20"></div>
+      <div id="pagination" class="flickr"></div><!--放置页码-->
+      <div class="comment_add">
+        <h3 class="base_tit">我来说几句吧<a name="Add"></a></h3>
+        <form id="comment_form" name="comment_form" url="{config.webpath}tools/submit_ajax.ashx?action=comment_add&article_id={model.id}">
+        <div class="comment_editor">
+          <textarea id="txtContent" name="txtContent" class="input" style="width:658px;height:70px;" datatype="*" sucmsg=" "></textarea>
+        </div>
+        <div class="subcon">
+          <input id="btnSubmit" name="submit" class="btn right" type="submit" value="提交评论（Ctrl+Enter）" />
+          <span>验证码：</span>
+          <input id="txtCode" name="txtCode" type="text" class="input small" datatype="s4-4" errormsg="请填写4位验证码" sucmsg=" " onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('btnSubmit').click();return false};"  />
+          <a href="javascript:;" onclick="ToggleCode(this, '{config.webpath}tools/verify_code.ashx');return false;"><img src="{config.webpath}tools/verify_code.ashx" width="80" height="22" style="vertical-align:middle;" /> 看不清楚？</a>
+        </div>
+        </form>
+      </div>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{model.title} - {config.webname}</title>
+<link rel="stylesheet" href="<%templateskin%>/css/style.css" />
+<script type="text/javascript" src="{config.webpath}scripts/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/js/base.js"></script>
+<link media="screen" type="text/css" rel="stylesheet" href="<%templateskin%>/images/jquery-ui.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/css/common.min.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/maincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/mainplugincolor_10.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/deputycolor_0.css">
+<link media="screen" type="text/css" rel="stylesheet"  href="<%templateskin%>/images/bordercolor_2.css" >
+<script type="text/javascript" src="<%templateskin%>/images/jquery-ui-1.11.1.custom.min.js"></script>
+<script type="text/javascript" src="<%templateskin%>/images/common.min.js"></script>
+<script type="text/javascript"  src="<%templateskin%>/images/jquery.filedownload.min.js"></script>
+
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+	<div id="main">
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+<div  style="height:10px;"></div>
+
+<div class="boxwrap">
+  <div class="left710">
+   <!--Content-->
+    <div class="content">
+      <div class="meta">
+        <h1 class="meta-tit">{model.title}</h1>
+      </div>
+      <div class="entry">
+        {model.content}
+      </div>
+    </div>
+    <!--/Content-->
+  </div>
+  
+  <div class="left264">
+    <!--Sidebar-->
+    <div class="sidebar">
+      <h3>帮助中心</h3>
+      <ul>
+        <%set DataTable contentlist=get_article_list("content", 0, 0, "status=0")%>
+        <%foreach(DataRow dr in contentlist.Rows)%>
+        <li><a title="{dr[title]}" href="<%linkurl("content",{dr[call_index]})%>">{dr[title]}</a></li>
+        <%/foreach%>
+        <li><a href="<%linkurl("feedback")%>">留言反馈</a></li>
+        <li><a href="<%linkurl("link")%>">友情链接</a></li>
+      </ul>
+ 
+    </div>
+    <!--/Sidebar-->
+    
+  </div>
+</div>
+
+<div class="clear"></div>
+</div>
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>

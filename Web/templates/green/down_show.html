@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%set string category_title=get_category_title(model.category_id,"资源下载")%>
+<title>{model.title} - {category_title} - {config.webname}</title>
+<meta content="{model.seo_keywords}" name="keywords" />
+<meta content="{model.seo_description}" name="description" />
+<link media="screen" type="text/css" href="<%templateskin%>/css/style.css" rel="stylesheet" />
+<script type="text/javascript" src="{config.webpath}scripts/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="{config.webpath}scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+<script type="text/javascript" src="<%templateskin%>/js/base.js"></script>
+</head>
+
+<body>
+<!--Header-->
+<%template src="_header.html"%>
+<!--/Header-->
+
+<div class="boxwrap">
+  <div class="left710">
+   <!--Content-->
+    <div class="main_box">
+      <div class="meta">
+        <h1 class="meta-tit">{model.title}</h1>
+        <p class="meta-info">
+          <span class="time">{model.add_time}</span>
+          <span class="comm"><script type="text/javascript" src="{config.webpath}tools/submit_ajax.ashx?action=view_comment_count&id={model.id}"></script>人评论</span>
+          <span class="view"><script type="text/javascript" src="{config.webpath}tools/submit_ajax.ashx?action=view_article_click&id={model.id}&click=1"></script>次浏览</span>
+          分类：{category_title}
+        </p>
+      </div>
+      
+      <div class="entry">
+        {model.content}
+      </div>
+      
+      <!--分享-->
+      <%template src="_share_js.html"%>
+      <!--/分享-->
+      
+      <div class="clear"></div>
+      <!--附件列表-->
+      <div class="attach_list">
+        <h3 class="base_tit">附件下载</h3>
+        <ul>
+          <%if(model.attach!=null)%>
+          <%loop (Model.article_attach) modelt1 model.attach%>
+          <li><span><a href="javascript:;" onclick="downLink({modelt1.point}, '{config.webpath}tools/download.ashx?id={modelt1.id}');">点击下载</a></span>附件{modelt1__loop__id}：{modelt1.file_name}
+          <i>大小：
+            <%if {modelt1.file_size}>1024%>
+            <%csharp%>
+            string tempSize = (modelt1.file_size/1024).ToString("#.##");
+            <%/csharp%>
+            {tempSize}MB
+            <%else%>
+            {modelt1.file_size}KB
+            <%/if%>
+          </i>
+          <i>下载：<script type="text/javascript" src="{config.webpath}tools/submit_ajax.ashx?action=view_attach_count&id={modelt1.id}"></script>次</i>
+          <i>所需积分：{modelt1.point}分</i></li>
+          <%/loop%>
+          <%/if%>
+        </ul>
+      </div>
+      <!--/附件列表-->
+      <div class="line10"></div>
+      
+      <!--同类推荐-->
+      <div class="related">
+        <h3 class="base_tit">相关资源</h3>
+        <ul class="txt_list">
+          <%set DataTable reddown1=get_article_list("down", model.category_id, 8, "is_red=1 and id<>"+model.id)%>
+          <%foreach(DataRow dr in reddown1.Rows)%>
+          <li><a href="<%linkurl("down_show",{dr[id]})%>">{dr[title]}</a><span>( {dr[add_time]} )</span></li>
+          <%/foreach%>
+          <%if(reddown1.Rows.Count<1)%>
+          <div>同类下暂无推荐的资源...</div>
+          <%/if%>
+        </ul>
+      </div>
+      <!--/同类推荐-->
+      
+      <!--评论-->
+      <%if(model.is_msg==1)%>
+      <%template src="_comment_box.html"%>
+      <%/if%>
+      <!--/评论-->
+    </div>
+    <!--/Content-->
+  </div>
+  
+  <div class="left264">
+    <!--Sidebar-->
+    <div class="sidebar">
+      <h3>资源类别</h3>
+      <ul>
+        <%set DataTable category_list1=get_category_list("down", 0)%>
+        <%foreach(DataRow dr in category_list1.Rows)%>
+        <li><a title="{dr[title]}" href="<%linkurl("down_list",{dr[id]})%>"><em class="arrow">&gt;</em>{dr[title]}</a></li>
+        <%/foreach%>
+      </ul>
+      <h3>推荐资源</h3>
+      <div class="focus_list">
+        <ul>
+          <%set DataTable reddown=get_article_list("down", 0, 6, "is_red=1 and img_url<>''")%>
+          <%foreach(DataRow dr in reddown.Rows)%>
+          <li>
+            <a title="{dr[title]}" href="<%linkurl("down_show",{dr[id]})%>">
+              <img src="{dr[img_url]}" width="100" height="100" alt="{dr[title]}" />
+              <span>{dr[title]}</span>
+            </a>
+          </li>
+          <%/foreach%>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <h3>下载排行</h3>
+      <ul class="rank_list">
+        <%set DataTable hotdown=get_article_list("down", 0, 10, "", "click desc,id desc")%>
+        <%loop hotdr hotdown%>
+        <%if hotdr__loop__id==1%>
+        <li class="active">
+        <%else%>
+        <li>
+        <%/if%>
+          <span><%datetostr({hotdr[add_time]},MM-dd)%></span>
+          <i class="num"><%write hotdr__loop__id%></i><a href="<%linkurl("down_show",{hotdr[id]})%>">{hotdr[title]}</a>
+        </li>
+        <%/loop%>
+      </ul>
+    </div>
+    <!--/Sidebar-->
+  </div>
+</div>
+
+<div class="clear"></div>
+
+<!--Footer-->
+<%template src="_footer.html"%>
+<!--/Footer-->
+</body>
+</html>
