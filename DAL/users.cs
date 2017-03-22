@@ -489,7 +489,7 @@ namespace DAL
             {
                 strSql.Append(") and status<3");
             }
-
+            
             SqlParameter[] parameters = {
 					    new SqlParameter("@user_name", SqlDbType.NVarChar,100),
                         new SqlParameter("@password", SqlDbType.NVarChar,100)};
