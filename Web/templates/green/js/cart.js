@@ -4,7 +4,7 @@ function HintRemove(obj){
 }
 
 //添加进购物车
-function CartAdd(obj, webpath, linktype, linkurl){
+function CartAdd(obj, webpath, linktype, linkurl) {
 	if($("#goods_id").val()=="" || $("#goods_quantity").val()==""){
 		return false;
 	}
@@ -13,7 +13,8 @@ function CartAdd(obj, webpath, linktype, linkurl){
 		url: webpath + "tools/submit_ajax.ashx?action=cart_goods_add",
 		data: {
 			"goods_id" : $("#goods_id").val(),
-			"goods_quantity" : $("#goods_quantity").val()
+            "goods_quantity": $("#goods_quantity").val(),
+            "colorstring": $("#field_control_ColorString").val("value"),
 		},
 		dataType: "json",
 		beforeSend: function(XMLHttpRequest) {

@@ -710,7 +710,7 @@ namespace DAL
         public Model.article GetModel(int id)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 id,channel_id,category_id,call_index,title,link_url,img_url,seo_title,seo_keywords,seo_description,zhaiyao,content,sort_id,click,status,groupids_view,vote_id,is_top,is_red,is_hot,is_slide,is_sys,is_msg,user_name,add_time,update_time");
+            strSql.Append("select  top 1 id,channel_id,category_id,call_index,title,link_url,img_url,seo_title,seo_keywords,seo_description,zhaiyao,content,sort_id,click,status,groupids_view,vote_id,is_top,is_red,is_hot,is_slide,is_sys,is_msg,user_name,add_time,update_time,ColorString,SizeString ");
             strSql.Append(" from " + databaseprefix + "article ");
             strSql.Append(" where id=@id");
             SqlParameter[] parameters = {
@@ -792,6 +792,14 @@ namespace DAL
                 if (ds.Tables[0].Rows[0]["update_time"].ToString() != "")
                 {
                     model.update_time = DateTime.Parse(ds.Tables[0].Rows[0]["update_time"].ToString());
+                }
+                if(ds.Tables[0].Rows[0]["ColorString"].ToString() != "")
+                {
+                    model.ColorString = ds.Tables[0].Rows[0]["ColorString"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["SizeString"].ToString() != "")
+                {
+                    model.SizeString = ds.Tables[0].Rows[0]["SizeString"].ToString();
                 }
                 #endregion
 
@@ -879,7 +887,7 @@ namespace DAL
             {
                 strSql.Append(" top " + Top.ToString());
             }
-            strSql.Append(" id,channel_id,category_id,call_index,title,link_url,img_url,seo_title,seo_keywords,seo_description,zhaiyao,content,sort_id,click,status,groupids_view,vote_id,is_top,is_red,is_hot,is_slide,is_sys,is_msg,user_name,add_time,update_time ");
+            strSql.Append(" id,channel_id,category_id,call_index,title,link_url,img_url,seo_title,seo_keywords,seo_description,zhaiyao,content,sort_id,click,status,groupids_view,vote_id,is_top,is_red,is_hot,is_slide,is_sys,is_msg,user_name,add_time,update_time,ColorString,SizeString ");
             strSql.Append(" FROM " + databaseprefix + "article ");
             if (strWhere.Trim() != "")
             {

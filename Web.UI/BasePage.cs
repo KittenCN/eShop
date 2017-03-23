@@ -10,6 +10,8 @@ using System.Web;
 using System.Web.UI;
 using System.Configuration;
 using Common;
+using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace Web.UI
 {
@@ -121,7 +123,7 @@ namespace Web.UI
                     }
                 }
             }
-               
+
             return string.Empty;
         }
 
@@ -268,6 +270,82 @@ namespace Web.UI
             return Utils.GetUrlExtension(urlPage, staticExtension);
         }
 
+        #endregion
+
+        #region 页面处理
+        protected string CreateMulitSelect(string ModelName, int article_id)
+        {
+            //创建一个dl标签
+            HtmlGenericControl htmlDL = new HtmlGenericControl("dl");
+            HtmlGenericControl htmlDT = new HtmlGenericControl("dt");
+            HtmlGenericControl htmlDD = new HtmlGenericControl("dd");
+
+            RadioButtonList rblControl = new RadioButtonList();
+            rblControl.ID = "field_control_" + ModelName;
+            rblControl.RepeatDirection = RepeatDirection.Horizontal;
+            rblControl.RepeatLayout = RepeatLayout.Flow;
+            HtmlGenericControl htmlDiv2 = new HtmlGenericControl("div");
+            htmlDiv2.Attributes.Add("class", "rule-multi-radio");
+            htmlDiv2.Controls.Add(rblControl);
+
+            string ModelList = "";
+            string ModelDef = "1";
+            string ModelTip = "";
+
+            Model.article model = new BLL.article().GetModel(article_id);
+            switch(ModelName)
+            {
+                case "ColorString":
+                    ModelList = model.ColorString;
+                    break;
+                case "SizeString":
+                    ModelList = model.SizeString;
+                    break;
+            }
+
+            //赋值选项
+            string[] valArr = ModelList.Split(new string[] { "\r\n", "\n", "\\r\\n", "\\n" }, StringSplitOptions.None);
+            for (int i = 0; i < valArr.Length; i++)
+            {
+                string[] valItemArr = valArr[i].Split('|');
+                if (valItemArr.Length == 2)
+                {
+                    rblControl.Items.Add(new ListItem(valItemArr[0], valItemArr[1]));
+                }
+            }
+            rblControl.SelectedValue = ModelDef; //默认值
+                                                 //创建一个Label控件
+            Label labelControl4 = new Label();
+            labelControl4.CssClass = "Validform_checktip";
+            labelControl4.Text = ModelTip;
+            //将控件添加至DD中
+            htmlDD.Controls.Add(htmlDiv2);
+            //htmlDD.Controls.Add(labelControl4);
+
+            //将DT和DD添加到DL中
+            htmlDL.Controls.Add(htmlDT);
+            htmlDL.Controls.Add(htmlDD);
+
+            ////将DL添加至field_tab_content中
+            //field_tab_content.Controls.Add(htmlDL);
+
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw = new StringWriter(sb);
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            htmlDL.RenderControl(htw);
+            return sb.ToString();
+        }
+
+        public string GetString(string ObjNmae, System.Web.UI.Control page)
+        {
+            string strResult = "";
+            RadioButtonList cbControl = page.FindControl("field_control_" + ObjNmae) as RadioButtonList;
+            if(cbControl != null)
+            {
+                strResult = cbControl.SelectedValue;
+            }
+            return strResult;
+        }
         #endregion
     }
 }

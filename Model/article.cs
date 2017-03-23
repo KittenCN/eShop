@@ -39,6 +39,19 @@ namespace Model
         private string _user_name;
         private DateTime _add_time = DateTime.Now;
         private DateTime? _update_time;
+        private string _ColorString = "";
+        private string _SizeString = "";
+
+        public string ColorString
+        {
+            set { _ColorString = value; }
+            get { return _ColorString; }
+        }
+        public string SizeString
+        {
+            set { _SizeString = value; }
+            get { return _SizeString; }
+        }
 
         /// <summary>
         /// ×ÔÔöID

@@ -1585,6 +1585,7 @@ namespace Web.tools
         {
             string goods_id = AXRequest.GetFormString("goods_id");
             int goods_quantity = AXRequest.GetFormInt("goods_quantity", 1);
+            string colorstring = AXRequest.GetFormString("colorstring");
             if (goods_id == "")
             {
                 context.Response.Write("{\"status\":0, \"msg\":\"您提交的商品参数有误！\"}");
