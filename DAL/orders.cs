@@ -105,7 +105,10 @@ namespace DAL
 					new SqlParameter("@add_time", SqlDbType.DateTime),
 					new SqlParameter("@confirm_time", SqlDbType.DateTime),
 					new SqlParameter("@complete_time", SqlDbType.DateTime),
-                    new SqlParameter("@ReturnValue",SqlDbType.Int)};
+                    new SqlParameter("@ReturnValue",SqlDbType.Int)
+                    //new SqlParameter("@colorstring",SqlDbType.VarChar),
+                    //new SqlParameter("@sizestring",SqlDbType.VarChar)
+            };
             parameters[0].Value = model.order_no;
             parameters[1].Value = model.trade_no;
             parameters[2].Value = model.user_id;
@@ -148,9 +151,9 @@ namespace DAL
                 {
                     strSql2 = new StringBuilder();
                     strSql2.Append("insert into " + databaseprefix + "order_goods(");
-                    strSql2.Append("order_id,goods_id,goods_title,goods_price,real_price,quantity,point)");
+                    strSql2.Append("order_id,goods_id,goods_title,goods_price,real_price,quantity,point,colorstring,sizestring)");
                     strSql2.Append(" values (");
-                    strSql2.Append("@order_id,@goods_id,@goods_title,@goods_price,@real_price,@quantity,@point)");
+                    strSql2.Append("@order_id,@goods_id,@goods_title,@goods_price,@real_price,@quantity,@point,@colorstring,@sizestring)");
                     SqlParameter[] parameters2 = {
 						    new SqlParameter("@order_id", SqlDbType.Int,4),
 						    new SqlParameter("@goods_id", SqlDbType.Int,4),
@@ -158,7 +161,10 @@ namespace DAL
 						    new SqlParameter("@goods_price", SqlDbType.Decimal,5),
 						    new SqlParameter("@real_price", SqlDbType.Decimal,5),
 						    new SqlParameter("@quantity", SqlDbType.Int,4),
-						    new SqlParameter("@point", SqlDbType.Int,4)};
+						    new SqlParameter("@point", SqlDbType.Int,4),
+                            new SqlParameter("@colorstring",SqlDbType.VarChar),
+                            new SqlParameter("@sizestring",SqlDbType.VarChar)
+                    };
                     parameters2[0].Direction = ParameterDirection.InputOutput;
                     parameters2[1].Value = models.goods_id;
                     parameters2[2].Value = models.goods_title;
@@ -166,6 +172,8 @@ namespace DAL
                     parameters2[4].Value = models.real_price;
                     parameters2[5].Value = models.quantity;
                     parameters2[6].Value = models.point;
+                    parameters2[7].Value = models.colorstring;
+                    parameters2[8].Value = models.sizestring;
                     cmd = new CommandInfo(strSql2.ToString(), parameters2);
                     sqllist.Add(cmd);
                 }
@@ -455,7 +463,7 @@ namespace DAL
 
                 #region 子表信息
                 StringBuilder strSql2 = new StringBuilder();
-                strSql2.Append("select id,order_id,goods_id,goods_title,goods_price,real_price,quantity,point from " + databaseprefix + "order_goods ");
+                strSql2.Append("select id,order_id,goods_id,goods_title,goods_price,real_price,quantity,point,colorstring,sizestring from " + databaseprefix + "order_goods ");
                 strSql2.Append(" where order_id=@id ");
                 SqlParameter[] parameters2 = {
 					    new SqlParameter("@id", SqlDbType.Int,4)};
@@ -501,6 +509,14 @@ namespace DAL
                         if (ds2.Tables[0].Rows[n]["point"] != null && ds2.Tables[0].Rows[n]["point"].ToString() != "")
                         {
                             modelt.point = int.Parse(ds2.Tables[0].Rows[n]["point"].ToString());
+                        }
+                        if (ds2.Tables[0].Rows[n]["colorstring"] != null && ds2.Tables[0].Rows[n]["colorstring"].ToString() != "")
+                        {
+                            modelt.colorstring = ds2.Tables[0].Rows[n]["colorstring"].ToString();
+                        }
+                        if (ds2.Tables[0].Rows[n]["sizestring"] != null && ds2.Tables[0].Rows[n]["sizestring"].ToString() != "")
+                        {
+                            modelt.sizestring = ds2.Tables[0].Rows[n]["sizestring"].ToString();
                         }
                         models.Add(modelt);
                     }

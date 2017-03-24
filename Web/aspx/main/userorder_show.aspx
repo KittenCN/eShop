@@ -353,7 +353,7 @@ override protected void OnInit(EventArgs e)
 	templateBuilder.Append(Utils.ObjectToStr(model.telphone));
 	templateBuilder.Append("</dd>\r\n        </dl>\r\n        <dl>\r\n          <dt>备注留言：</dt>\r\n          <dd>");
 	templateBuilder.Append(Utils.ObjectToStr(model.message));
-	templateBuilder.Append("</dd>\r\n        </dl>\r\n      </div>\r\n              \r\n      <div class=\"line10\"></div>\r\n      <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"5\" class=\"ftable\">\r\n        <tr>\r\n          <th width=\"64\"></th>\r\n          <th align=\"left\">商品名称</th>\r\n          <th width=\"80\">销售价</td>\r\n          <th width=\"80\">优惠价</th>\r\n          <th width=\"60\">积分</th>\r\n          <th width=\"50\">数量</th>\r\n          <th width=\"100\">金额合计</th>\r\n          <th width=\"80\">积分合计</th>\r\n        </tr>\r\n        ");
+	templateBuilder.Append("</dd>\r\n        </dl>\r\n      </div>\r\n              \r\n      <div class=\"line10\"></div>\r\n      <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"5\" class=\"ftable\">\r\n        <tr>\r\n          <th width=\"64\"></th>\r\n          <th align=\"left\">商品名称</th>\r\n          <th width=\"80\">销售价</td>\r\n          <th width=\"80\">优惠价</th>\r\n        <th width=\"100\" align=\"center\">颜色</th>\r\n        <th width=\"100\" align=\"center\">尺寸</th>\r\n          <th width=\"60\">积分</th>\r\n          <th width=\"50\">数量</th>\r\n          <th width=\"100\">金额合计</th>\r\n          <th width=\"80\">积分合计</th>\r\n        </tr>\r\n        ");
 	if (model.order_goods!=null)
 	{
 
@@ -383,6 +383,10 @@ override protected void OnInit(EventArgs e)
 	}	//end for if
 
 	templateBuilder.Append("\r\n            ");
+    templateBuilder.Append(Utils.ObjectToStr(modelt.colorstring));
+    templateBuilder.Append("</td>\r\n        <td align=\"center\">\r\n          ");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.sizestring));
+	templateBuilder.Append("</td>\r\n        <td align=\"center\">\r\n          ");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.point));
 	templateBuilder.Append("\r\n          </td>\r\n          <td align=\"center\">");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.quantity));

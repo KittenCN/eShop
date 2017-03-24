@@ -19,6 +19,8 @@ namespace Model
         private decimal _real_price = 0M;
         private int _quantity = 0;
         private int _point = 0;
+        private string _colorstring;
+        private string _sizestring;
         /// <summary>
         /// ×ÔÔöID
         /// </summary>
@@ -82,6 +84,16 @@ namespace Model
         {
             set { _point = value; }
             get { return _point; }
+        }
+        public string colorstring
+        {
+            set { _colorstring = value; }
+            get { return _colorstring; }
+        }
+        public string sizestring
+        {
+            set { _sizestring = value; }
+            get { return _sizestring; }
         }
         #endregion Model
 

@@ -419,7 +419,7 @@ override protected void OnInit(EventArgs e)
 	templateBuilder.Append("\r\n        <em>费用：" + Utils.ObjectToStr(dr2["express_fee"]) + "元</em></label>\r\n      </li>\r\n      ");
 	}	//end for if
 
-	templateBuilder.Append("\r\n    </ul>\r\n    \r\n    <div class=\"line20\"></div>\r\n    <h3 class=\"bar_tit\">3、商品清单</h3>\r\n    <table width=\"938\" border=\"0\" align=\"center\" cellpadding=\"8\" cellspacing=\"0\" class=\"cart_table\">\r\n      <tr>\r\n        <th width=\"64\"></th>\r\n        <th align=\"left\">商品名称</th>\r\n        <th width=\"80\" align=\"center\">积分</th>\r\n        <th width=\"80\" align=\"center\">单价</th>\r\n        <th width=\"80\" align=\"center\">数量</th>\r\n        <th width=\"80\" align=\"center\">优惠</th>\r\n        <th width=\"100\" align=\"center\">金额小计</th>\r\n        <th width=\"100\" align=\"center\">积分小计</th>\r\n      </tr>\r\n      ");
+	templateBuilder.Append("\r\n    </ul>\r\n    \r\n    <div class=\"line20\"></div>\r\n    <h3 class=\"bar_tit\">3、商品清单</h3>\r\n    <table width=\"938\" border=\"0\" align=\"center\" cellpadding=\"8\" cellspacing=\"0\" class=\"cart_table\">\r\n      <tr>\r\n        <th width=\"64\"></th>\r\n        <th align=\"left\">商品名称</th>\r\n        <th width=\"100\" align=\"center\">颜色</th>\r\n        <th width=\"100\" align=\"center\">尺寸</th>\r\n        <th width=\"80\" align=\"center\">积分</th>\r\n        <th width=\"80\" align=\"center\">单价</th>\r\n        <th width=\"80\" align=\"center\">数量</th>\r\n        <th width=\"80\" align=\"center\">优惠</th>\r\n        <th width=\"100\" align=\"center\">金额小计</th>\r\n        <th width=\"100\" align=\"center\">积分小计</th>\r\n      </tr>\r\n      ");
 	IList<Model.cart_items> ls2 = get_cart_list();
 
 	foreach(Model.cart_items modelt in ls2)
@@ -443,6 +443,10 @@ override protected void OnInit(EventArgs e)
 	}	//end for if
 
 	templateBuilder.Append("\r\n          ");
+    templateBuilder.Append(Utils.ObjectToStr(modelt.colorstring));
+    templateBuilder.Append("</td>\r\n        <td align=\"center\">\r\n          ");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.sizestring));
+	templateBuilder.Append("</td>\r\n        <td align=\"center\">\r\n          ");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.point));
 	templateBuilder.Append("\r\n        </td>\r\n        <td align=\"center\">￥");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.price));

@@ -1783,7 +1783,7 @@ namespace Web.tools
             List<Model.order_goods> gls = new List<Model.order_goods>();
             foreach (Model.cart_items item in iList)
             {
-                gls.Add(new Model.order_goods { goods_id = item.id, goods_title = item.title, goods_price = item.price, real_price = item.user_price, quantity = item.quantity, point = item.point });
+                gls.Add(new Model.order_goods { goods_id = item.id, goods_title = item.title, goods_price = item.price, real_price = item.user_price, quantity = item.quantity, point = item.point, colorstring = item.colorstring, sizestring = item.sizestring });
             }
             model.order_goods = gls;
             int result = new BLL.orders().Add(model);
