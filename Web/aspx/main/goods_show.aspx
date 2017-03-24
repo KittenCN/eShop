@@ -257,7 +257,7 @@
         templateBuilder.Append(CreateMulitSelect("ColorString", model.id));
         //templateBuilder.Append("<div id=\"field_tab_content\" runat=\"server\" visible=\"false\" class=\"tab-content\" style=\"display:none\"></div>");
         templateBuilder.Append("</h1>\r\n        <div class=\"pro-items\">\r\n          <dl>\r\n            <dt>尺寸分类：</dt>\r\n            <dd>");
-        templateBuilder.Append(CreateMulitSelect("StringString", model.id));
+        templateBuilder.Append(CreateMulitSelect("SizeString", model.id));
         templateBuilder.Append(" </dd>\r\n          </dl>\r\n          <dl>\r\n            <dt>库存情况：</dt>\r\n            <dd>" + Utils.ObjectToStr(model.fields["stock_quantity"]) + "件</dd>\r\n          </dl>\r\n          <dl>\r\n            <dt>销售价格：</dt>\r\n            <dd><b class=\"red\">￥" + Utils.ObjectToStr(model.fields["sell_price"]) + "</b></dd>\r\n          </dl>\r\n          <dl>\r\n            <dt>会员价格：</dt>\r\n            <dd>\r\n              ");
         decimal user_price = get_user_article_price(model.id);
 
@@ -286,12 +286,10 @@
             templateBuilder.Append(Utils.ObjectToStr(config.webpath));
             templateBuilder.Append("', 0, '");
             templateBuilder.Append(linkurl("shopping","cart"));
-
             templateBuilder.Append("');\">加入购物车</a>\r\n            <a href=\"javascript:void(0);\" class=\"buy\" onclick=\"CartAdd(this, '");
             templateBuilder.Append(Utils.ObjectToStr(config.webpath));
             templateBuilder.Append("', 1, '");
             templateBuilder.Append(linkurl("shopping","confirm"));
-
             templateBuilder.Append("');\">立即购买</a>\r\n            ");
         }
         else

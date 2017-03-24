@@ -21,6 +21,8 @@ namespace Model
         private int _point = 0;
         private int _quantity = 1;
         private int _stock_quantity = 0;
+        private string _colorstring;
+        private string _sizestring;
 
         /// <summary>
         /// 商品ID
@@ -85,6 +87,18 @@ namespace Model
         {
             set { _stock_quantity = value; }
             get { return _stock_quantity; }
+        }
+
+        public string colorstring
+        {
+            set { _colorstring = value; }
+            get { return _colorstring; }
+        }
+
+        public string sizestring
+        {
+            set { _sizestring = value; }
+            get { return _sizestring; }
         }
         #endregion
     }

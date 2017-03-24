@@ -216,7 +216,7 @@ override protected void OnInit(EventArgs e)
 
 	templateBuilder.Append("\r\n    <!--购物车-->\r\n    <h1 class=\"main_tit\">\r\n      <span><a onclick=\"DeleteCart(this,'");
 	templateBuilder.Append(Utils.ObjectToStr(config.webpath));
-	templateBuilder.Append("','0');\" href=\"javascript:;\">清空购物车</a></span>\r\n      我的购物车<strong>Shopping Cart</strong>\r\n    </h1>\r\n    <div class=\"cart_step\">\r\n      <ul>\r\n        <li class=\"selected\"><span>1</span>放进购物车</li>\r\n        <li><span>2</span>填写订单信息</li>\r\n        <li class=\"last\"><span>3</span>支付/确定订单</li>\r\n      </ul>\r\n    </div>\r\n    <div class=\"line20\"></div>\r\n    \r\n    <table width=\"938\" border=\"0\" align=\"center\" cellpadding=\"8\" cellspacing=\"0\" class=\"cart_table\">\r\n      <tr>\r\n        <th width=\"64\"></th>\r\n        <th align=\"left\">商品名称</th>\r\n        <th width=\"80\" align=\"center\">积分</th>\r\n        <th width=\"80\" align=\"center\">单价</th>\r\n        <th width=\"80\" align=\"center\">数量</th>\r\n        <th width=\"80\" align=\"center\">优惠</th>\r\n        <th width=\"100\" align=\"center\">金额小计</th>\r\n        <th width=\"100\" align=\"center\">积分小计</th>\r\n        <th width=\"50\" align=\"center\">操作</th>\r\n      </tr>\r\n      ");
+	templateBuilder.Append("','0');\" href=\"javascript:;\">清空购物车</a></span>\r\n      我的购物车<strong>Shopping Cart</strong>\r\n    </h1>\r\n    <div class=\"cart_step\">\r\n      <ul>\r\n        <li class=\"selected\"><span>1</span>放进购物车</li>\r\n        <li><span>2</span>填写订单信息</li>\r\n        <li class=\"last\"><span>3</span>支付/确定订单</li>\r\n      </ul>\r\n    </div>\r\n    <div class=\"line20\"></div>\r\n    \r\n    <table width=\"938\" border=\"0\" align=\"center\" cellpadding=\"8\" cellspacing=\"0\" class=\"cart_table\">\r\n      <tr>\r\n        <th width=\"64\"></th>\r\n        <th align=\"left\">商品名称</th>\r\n        <th width=\"100\" align=\"center\">颜色</th>\r\n        <th width=\"100\" align=\"center\">尺寸</th>\r\n        <th width=\"80\" align=\"center\">积分</th>\r\n        <th width=\"80\" align=\"center\">单价</th>\r\n        <th width=\"80\" align=\"center\">数量</th>\r\n        <th width=\"80\" align=\"center\">优惠</th>\r\n        <th width=\"100\" align=\"center\">金额小计</th>\r\n        <th width=\"100\" align=\"center\">积分小计</th>\r\n        <th width=\"50\" align=\"center\">操作</th>\r\n      </tr>\r\n      ");
 	IList<Model.cart_items> ls1 = get_cart_list();
 
 	foreach(Model.cart_items modelt in ls1)
@@ -235,11 +235,14 @@ override protected void OnInit(EventArgs e)
 	templateBuilder.Append("</a></td>\r\n        <td align=\"center\">\r\n          ");
 	if (modelt.point>0)
 	{
-
+                    
 	templateBuilder.Append("\r\n          +\r\n          ");
 	}	//end for if
-
-	templateBuilder.Append("\r\n          ");
+    templateBuilder.Append("\r\n          ");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.colorstring));
+    templateBuilder.Append("</td>\r\n        <td align=\"center\">\r\n          ");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.sizestring));
+	templateBuilder.Append("</td>\r\n        <td align=\"center\">\r\n          ");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.point));
 	templateBuilder.Append("\r\n        </td>\r\n        <td align=\"center\">￥");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.price));
@@ -249,16 +252,28 @@ override protected void OnInit(EventArgs e)
 	templateBuilder.Append(Utils.ObjectToStr(config.webpath));
 	templateBuilder.Append("', '");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.id));
+    templateBuilder.Append("', '");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.colorstring));
+    templateBuilder.Append("', '");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.sizestring));
 	templateBuilder.Append("', -1);\">减一</a>\r\n          <input type=\"text\" name=\"goods_quantity\" class=\"input\" style=\"width:30px;text-align:center;ime-mode:Disabled;\" value=\"");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.quantity));
 	templateBuilder.Append("\" onblur=\"CartAmountTotal(this, '");
 	templateBuilder.Append(Utils.ObjectToStr(config.webpath));
 	templateBuilder.Append("', '");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.id));
+    templateBuilder.Append("', '");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.colorstring));
+    templateBuilder.Append("', '");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.sizestring));
 	templateBuilder.Append("');\" onkeypress=\"return (/[\\d]/.test(String.fromCharCode(event.keyCode)))\" />\r\n          <a href=\"javascript:;\" class=\"subjoin\" title=\"加一\" onclick=\"CartComputNum(this,'");
 	templateBuilder.Append(Utils.ObjectToStr(config.webpath));
 	templateBuilder.Append("', '");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.id));
+    templateBuilder.Append("', '");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.colorstring));
+    templateBuilder.Append("', '");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.sizestring));
 	templateBuilder.Append("', 1);\">加一</a>\r\n        </td>\r\n        <td align=\"center\">￥<label name=\"discount_amount\">");
 	templateBuilder.Append(((modelt.price-modelt.user_price)*modelt.quantity).ToString());
 
@@ -279,6 +294,10 @@ override protected void OnInit(EventArgs e)
 	templateBuilder.Append(Utils.ObjectToStr(config.webpath));
 	templateBuilder.Append("','");
 	templateBuilder.Append(Utils.ObjectToStr(modelt.id));
+    templateBuilder.Append("','");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.colorstring));
+    templateBuilder.Append("','");
+	templateBuilder.Append(Utils.ObjectToStr(modelt.sizestring));
 	templateBuilder.Append("');\" href=\"javascript:;\">删除</a></td>\r\n      </tr>\r\n      ");
 	}	//end for if
 

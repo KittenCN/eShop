@@ -151,6 +151,7 @@ namespace Common
         /// 购物车
         /// </summary>
         public const string COOKIE_SHOPPING_CART = "ax_cookie_shopping_cart";
+        public const string COOKIE_SHOPPING_CART_EX = "ax_cookie_shopping_cart_ex";
         /// <summary>
         /// 返回上一页
         /// </summary>

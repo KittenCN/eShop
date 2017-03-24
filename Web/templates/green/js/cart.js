@@ -14,7 +14,8 @@ function CartAdd(obj, webpath, linktype, linkurl) {
 		data: {
 			"goods_id" : $("#goods_id").val(),
             "goods_quantity": $("#goods_quantity").val(),
-            "colorstring": $("#field_control_ColorString").val("value"),
+            "colorstring": $("input:radio[name='ColorString']:checked").val(),
+            "sizestring": $('input:radio[name="SizeString"]:checked').val()
 		},
 		dataType: "json",
 		beforeSend: function(XMLHttpRequest) {
@@ -61,14 +62,18 @@ function CartAdd(obj, webpath, linktype, linkurl) {
 }
 
 //删除购物车商品
-function DeleteCart(obj, webpath, goods_id){
+function DeleteCart(obj, webpath, goods_id, colorstring, sizestring){
 	if(!confirm("您确认要从购物车中移除吗？") || goods_id==""){
 		return false;
 	}
 	$.ajax({
 		type: "post",
 		url: webpath + "tools/submit_ajax.ashx?action=cart_goods_delete",
-		data: {"goods_id" : goods_id},
+        data: {
+            "goods_id": goods_id,
+            "colorstring": colorstring,
+            "sizestring": sizestring
+        },
 		dataType: "json",
 		beforeSend: function(XMLHttpRequest) {
 			//发送前动作
@@ -89,7 +94,7 @@ function DeleteCart(obj, webpath, goods_id){
 }
 
 //计算购物车金额
-function CartAmountTotal(obj, webpath, goods_id){
+function CartAmountTotal(obj, webpath, goods_id, colorstring, sizestring){
 	if(isNaN($(obj).val())){
 		alert('商品数量只能输入数字!');
 		$(obj).val("1");
@@ -99,7 +104,9 @@ function CartAmountTotal(obj, webpath, goods_id){
 		url: webpath + "tools/submit_ajax.ashx?action=cart_goods_update",
 		data: {
 			"goods_id" : goods_id,
-			"goods_quantity" : $(obj).val()
+            "goods_quantity": $(obj).val(),
+            "colorstring": colorstring,
+            "sizestring": sizestring
 		},
 		dataType: "json",
 		beforeSend: function(XMLHttpRequest) {
@@ -121,18 +128,18 @@ function CartAmountTotal(obj, webpath, goods_id){
 	return false;
 }
 //购物车数量加减
-function CartComputNum(obj, webpath, goods_id, num){
+function CartComputNum(obj, webpath, goods_id, colorstring, sizestring, num){
 	if(num > 0){
 		var goods_quantity = $(obj).prev("input[name='goods_quantity']");
 		$(goods_quantity).val(parseInt($(goods_quantity).val()) + 1);
 		//计算购物车金额
-		CartAmountTotal($(goods_quantity), webpath, goods_id);
+        CartAmountTotal($(goods_quantity), webpath, goods_id, colorstring, sizestring);
 	}else{
 		var goods_quantity = $(obj).next("input[name='goods_quantity']");
 		if(parseInt($(goods_quantity).val()) > 1){
 			$(goods_quantity).val(parseInt($(goods_quantity).val()) - 1);
 			//计算购物车金额
-			CartAmountTotal($(goods_quantity), webpath, goods_id);
+            CartAmountTotal($(goods_quantity), webpath, goods_id, colorstring, sizestring);
 		}
 	}
 }

@@ -1586,7 +1586,16 @@ namespace Web.tools
             string goods_id = AXRequest.GetFormString("goods_id");
             int goods_quantity = AXRequest.GetFormInt("goods_quantity", 1);
             string colorstring = AXRequest.GetFormString("colorstring");
-            if (goods_id == "")
+            string sizestring = AXRequest.GetFormString("sizestring");
+            if(colorstring == null || colorstring.Length == 0)
+            {
+                colorstring = "0";
+            }
+            if (sizestring == null || sizestring.Length == 0)
+            {
+                sizestring = "0";
+            }
+            if (goods_id == "" || colorstring == "" || sizestring == "")
             {
                 context.Response.Write("{\"status\":0, \"msg\":\"您提交的商品参数有误！\"}");
                 return;
@@ -1599,7 +1608,9 @@ namespace Web.tools
                 group_id = groupModel.group_id;
             }
             //统计购物车
-            Web.UI.ShopCart.Add(goods_id, goods_quantity);
+            string strEx = colorstring + "|" + sizestring;
+            Web.UI.ShopCart.Add(goods_id + "|" + strEx, goods_quantity);
+            Web.UI.ShopCart.AddEx(goods_id + "|" + strEx, strEx);
             Model.cart_total cartModel = Web.UI.ShopCart.GetTotal(group_id);
             context.Response.Write("{\"status\":1, \"msg\":\"商品已成功添加到购物车！\", \"quantity\":" + cartModel.total_quantity + ", \"amount\":" + cartModel.real_amount + "}");
             return;
@@ -1611,13 +1622,15 @@ namespace Web.tools
         {
             string goods_id = AXRequest.GetFormString("goods_id");
             int goods_quantity = AXRequest.GetFormInt("goods_quantity");
+            string colorstring = AXRequest.GetFormString("colorstring");
+            string sizestring = AXRequest.GetFormString("sizestring");
             if (goods_id == "")
             {
                 context.Response.Write("{\"status\":0, \"msg\":\"您提交的商品参数有误！\"}");
                 return;
             }
-
-            if (Web.UI.ShopCart.Update(goods_id, goods_quantity))
+            string strEx = colorstring + "|" + sizestring;
+            if (Web.UI.ShopCart.Update(goods_id + "|" + strEx, goods_quantity))
             {
                 context.Response.Write("{\"status\":1, \"msg\":\"商品数量修改成功！\"}");
             }
@@ -1633,12 +1646,16 @@ namespace Web.tools
         private void cart_goods_delete(HttpContext context)
         {
             string goods_id = AXRequest.GetFormString("goods_id");
+            string colorstring = AXRequest.GetFormString("colorstring");
+            string sizestring = AXRequest.GetFormString("sizestring");
             if (goods_id == "")
             {
                 context.Response.Write("{\"status\":0, \"msg\":\"您提交的商品参数有误！\"}");
                 return;
             }
-            Web.UI.ShopCart.Clear(goods_id);
+            string strEx = colorstring + "|" + sizestring;
+            Web.UI.ShopCart.Clear(goods_id + "|" + strEx);
+            Web.UI.ShopCart.ClearEx(goods_id + "|" + strEx);
             context.Response.Write("{\"status\":1, \"msg\":\"商品移除成功！\"}");
             return;
         }
