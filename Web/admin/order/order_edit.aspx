@@ -371,6 +371,8 @@
         <thead>
           <tr>
             <th>商品名称</th>
+            <th width="12%">颜色</th>
+            <th width="12%">尺寸</th>
             <th width="12%">销售价</th>
             <th width="12%">优惠价</th>
             <th width="10%">积分</th>
@@ -384,6 +386,8 @@
         <ItemTemplate>
           <tr class="td_c">
             <td style="text-align:left;white-space:normal;"><%#Eval("goods_title")%></td>
+            <td><%#Eval("colorstring")%></td>
+            <td><%#Eval("sizestring")%></td>
             <td><%#Eval("goods_price")%></td>
             <td><%#Eval("real_price")%></td>
             <td><%#Eval("point")%></td>
