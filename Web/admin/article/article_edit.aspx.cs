@@ -399,8 +399,7 @@ namespace Web.admin.article
             txtClick.Text = model.click.ToString();
             rblStatus.SelectedValue = model.status.ToString();
             txtAddTime.Text = model.add_time.ToString("yyyy-MM-dd HH:mm:ss");
-            tbCS.Text = model.ColorString.ToString();
-            tbSS.Text = model.SizeString.ToString();
+
 
             if (model.is_msg == 1)
             {
@@ -644,8 +643,6 @@ namespace Web.admin.article
             model.seo_title = txtSeoTitle.Text.Trim();
             model.seo_keywords = txtSeoKeywords.Text.Trim();
             model.seo_description = txtSeoDescription.Text.Trim();
-            model.ColorString = tbCS.Text;
-            model.SizeString = tbSS.Text;
             //内容摘要提取内容前255个字符
             if (string.IsNullOrEmpty(txtZhaiyao.Text.Trim()))
             {
@@ -780,8 +777,6 @@ namespace Web.admin.article
             model.seo_title = txtSeoTitle.Text.Trim();
             model.seo_keywords = txtSeoKeywords.Text.Trim();
             model.seo_description = txtSeoDescription.Text.Trim();
-            model.ColorString = tbCS.Text;
-            model.SizeString = tbSS.Text;
             //内容摘要提取内容前255个字符
             if (string.IsNullOrEmpty(txtZhaiyao.Text.Trim()))
             {

@@ -189,22 +189,6 @@
     </div>
     </dd>
   </dl>
-    <dl ID="Dcs" runat="server">
-    <dt><asp:Label ID="Label1" runat="server" Text="颜色" /></dt>
-    <dd> 
-     <div>
-         <asp:TextBox ID="tbCS" runat="server" Height="216px" TextMode="MultiLine" Width="305px"></asp:TextBox>
-    </div>
-    </dd>
-  </dl>
-     <dl ID="Dss" runat="server">
-    <dt><asp:Label ID="Label2" runat="server" Text="尺寸" /></dt>
-    <dd> 
-     <div>
-         <asp:TextBox ID="tbSS" runat="server" Height="216px" TextMode="MultiLine" Width="305px"></asp:TextBox>
-    </div>
-    </dd>
-  </dl>
   <dl ID="div_stock_quantity" runat="server" visible="false">
     <dt><asp:Label ID="div_stock_quantity_title" runat="server" Text="库存数量" /></dt>
     <dd>
